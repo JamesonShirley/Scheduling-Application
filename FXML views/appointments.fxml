@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="424.0" prefWidth="787.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TableView layoutX="64.0" layoutY="107.0" prefHeight="201.0" prefWidth="660.0">
+        <columns>
+          <TableColumn prefWidth="54.0" text="Appt. ID" />
+          <TableColumn prefWidth="67.0" text="Title" />
+            <TableColumn prefWidth="76.0" text="Description" />
+            <TableColumn prefWidth="62.0" text="Location" />
+            <TableColumn prefWidth="55.0" text="Contact" />
+            <TableColumn prefWidth="60.0" text="Type" />
+            <TableColumn prefWidth="73.0" text="Start" />
+            <TableColumn prefWidth="65.0" text="End" />
+            <TableColumn prefWidth="85.0" text="Customer ID" />
+            <TableColumn prefWidth="65.0" text="User ID" />
+        </columns>
+      </TableView>
+      <Text layoutX="318.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Appointments">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <RadioButton layoutX="318.0" layoutY="75.0" mnemonicParsing="false" onAction="#monthlySelect" selected="true" text="Monthly">
+         <toggleGroup>
+            <ToggleGroup fx:id="apptFilter" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton layoutX="402.0" layoutY="75.0" mnemonicParsing="false" onAction="#weeklySelect" text="Weekly" toggleGroup="$apptFilter" />
+      <Button layoutX="655.0" layoutY="324.0" mnemonicParsing="false" onAction="#onDeleteBtnClicked" text="Delete" />
+      <Button layoutX="529.0" layoutY="324.0" mnemonicParsing="false" onAction="#onAddBtnClicked" text="Add" />
+      <Button layoutX="586.0" layoutY="324.0" mnemonicParsing="false" onAction="#onModifyBtnClicked" text="Modify" />
+      <Button layoutX="655.0" layoutY="377.0" mnemonicParsing="false" onAction="#onCustomerBtnClicked" text="Customers" />
+      <Button layoutX="574.0" layoutY="377.0" mnemonicParsing="false" onAction="#onReportBtnClicked" text="Reports" />
+   </children>
+</AnchorPane>
