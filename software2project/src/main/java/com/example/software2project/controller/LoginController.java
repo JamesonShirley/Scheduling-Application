@@ -1,4 +1,4 @@
-package com.example.software2project;
+package com.example.software2project.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
