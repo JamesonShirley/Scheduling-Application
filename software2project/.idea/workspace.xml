@@ -60,8 +60,8 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.software2project.HelloApplication" />
+    <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.software2project.Main" />
       <module name="software2project" />
       <method v="2">
         <option name="Make" enabled="true" />

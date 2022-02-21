@@ -1,11 +1,21 @@
 package com.example.software2project.controller;
+import com.example.software2project.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.ToggleGroup;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class ApptController {
+    Stage stage;
+    Parent scene;
 
     @FXML
     private ToggleGroup apptFilter;
@@ -49,12 +59,19 @@ public class ApptController {
     }
 
     @FXML
-    void onAddBtnClicked(ActionEvent event) {
-
+    void onAddBtnClicked(ActionEvent event) throws IOException {
+        stage = (Stage)((Button)event.getSource()).getScene().getWindow();
+        scene = FXMLLoader.load(Main.class.getResource("addAppt.fxml"));
+        stage.setScene(new Scene(scene));
+        stage.show();
     }
 
     @FXML
-    void onCustomerBtnClicked(ActionEvent event) {
+    void onCustomerBtnClicked(ActionEvent event) throws IOException {
+        stage = (Stage)((Button)event.getSource()).getScene().getWindow();
+        scene = FXMLLoader.load(Main.class.getResource("customers.fxml"));
+        stage.setScene(new Scene(scene));
+        stage.show();
 
     }
 
@@ -64,7 +81,11 @@ public class ApptController {
     }
 
     @FXML
-    void onModifyBtnClicked(ActionEvent event) {
+    void onModifyBtnClicked(ActionEvent event) throws IOException {
+        stage = (Stage)((Button)event.getSource()).getScene().getWindow();
+        scene = FXMLLoader.load(Main.class.getResource("modifyAppt.fxml"));
+        stage.setScene(new Scene(scene));
+        stage.show();
 
     }
 
