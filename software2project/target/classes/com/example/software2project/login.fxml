@@ -39,7 +39,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.software2project.controller.LoginController">
    <children>
       <Label layoutX="314.0" layoutY="18.0" text="Local Date and Time" />
@@ -50,7 +49,9 @@
          </font>
       </Text>
       <TextField fx:id="userID" layoutX="226.0" layoutY="188.0" promptText="User ID" />
-      <TextField fx:id="password" layoutX="226.0" layoutY="239.0" promptText="Password" />
+      <TextField fx:id="password" layoutX="226.0" layoutY="246.0" promptText="Password" />
       <Button layoutX="274.0" layoutY="295.0" mnemonicParsing="false" onAction="#loginBtnClicked" text="Login" />
+      <Label layoutX="281.0" layoutY="164.0" text="User ID" />
+      <Label layoutX="272.0" layoutY="222.0" text="Password" />
    </children>
 </AnchorPane>
