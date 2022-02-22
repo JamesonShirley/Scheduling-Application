@@ -30,6 +30,6 @@
       <TextField fx:id="address" layoutX="123.0" layoutY="267.0" />
       <TextField fx:id="postal" layoutX="123.0" layoutY="302.0" />
       <TextField fx:id="phone" layoutX="123.0" layoutY="332.0" />
-      <ComboBox fx:id="country" layoutX="123.0" layoutY="190.0" prefWidth="150.0" />
+      <ComboBox fx:id="country" layoutX="123.0" layoutY="190.0" onAction="#countryChange" prefWidth="150.0" />
    </children>
 </AnchorPane>

@@ -1,6 +1,8 @@
 package com.example.software2project.model;
 
 import com.example.software2project.JDBC;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -70,33 +72,48 @@ public class Query {
         temp.getPreparedStatement().executeUpdate();
         temp.closeConnection();
     }
-    public static String[] getCountries() throws SQLException {
+    public static ObservableList<String> getCountries() throws SQLException {
         JDBC temp = new JDBC();
         temp.makeConnection();
         temp.makePreparedStatement("SELECT Country\n" +
                 "FROM countries",temp.getConnection());
         ResultSet results = temp.getPreparedStatement().executeQuery();
-        String[] arr = {};
+        ObservableList <String> arr = FXCollections.observableArrayList();
         while (results.next()){
-            arr = Arrays.copyOf(arr, arr.length + 1);
-            arr[arr.length - 1] = results.getString("Country");
+            arr.add(results.getString("Country"));
         }
         temp.closeConnection();
         return arr;
     }
-    public static String[] getDivisions() throws SQLException {
+
+    public static ObservableList<String> getDivisions(String country) throws SQLException {
         JDBC temp = new JDBC();
         temp.makeConnection();
-        temp.makePreparedStatement("SELECT Division\n" +
-                "FROM first_level_divisions",temp.getConnection());
+        temp.makePreparedStatement("SELECT f.Division\n" +
+                "FROM first_level_divisions f\n" + "INNER JOIN countries c ON c.Country_ID = f.Country_ID\n" +
+                "WHERE c.Country = ?",temp.getConnection());
+        temp.getPreparedStatement().setString(1, country);
         ResultSet results = temp.getPreparedStatement().executeQuery();
-        String[] arr = {};
+        ObservableList <String> arr = FXCollections.observableArrayList();
         while (results.next()){
-            arr = Arrays.copyOf(arr, arr.length + 1);
-            arr[arr.length - 1] = results.getString("Division");
+            arr.add(results.getString("Division"));
         }
         temp.closeConnection();
         return arr;
+    }
+    public static int getDivId(String div) throws SQLException {
+        JDBC temp = new JDBC();
+        temp.makeConnection();
+        temp.makePreparedStatement("SELECT Division_ID\n" +
+                "FROM first_level_divisions\n" + "WHERE Division = ?",temp.getConnection());
+        temp.getPreparedStatement().setString(1, div);
+        ResultSet results = temp.getPreparedStatement().executeQuery();
+        int value = 0;
+        while (results.next()) {
+            value = results.getInt("Division_ID");
+        }
+        temp.closeConnection();
+        return value;
     }
 }
 

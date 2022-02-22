@@ -39,7 +39,6 @@ public class ApptController {
         if(ApptList.getAllAppt().size() > 0){
             apptTable.getSelectionModel().select(0);
         }
-        System.out.println(query.getDivisions()[0]);
 
     }
     Stage stage;

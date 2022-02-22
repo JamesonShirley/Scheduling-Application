@@ -1,6 +1,8 @@
 package com.example.software2project.controller;
 
 import com.example.software2project.Main;
+import com.example.software2project.model.Query;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,8 +14,13 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class AddCustController {
+    public void initialize() throws SQLException {
+        Query query = new Query();
+        country.setItems((ObservableList<String>) query.getCountries());
+    }
     Stage stage;
     Parent scene;
 
@@ -21,10 +28,10 @@ public class AddCustController {
     private TextField address;
 
     @FXML
-    private ComboBox<?> country;
+    private ComboBox<String> country;
 
     @FXML
-    private ComboBox<?> firstLvlDiv;
+    private ComboBox<String> firstLvlDiv;
 
     @FXML
     private TextField id;
@@ -54,6 +61,12 @@ public class AddCustController {
         stage.setScene(new Scene(scene));
         stage.show();
 
+    }
+
+    @FXML
+    void countryChange(ActionEvent event) throws SQLException {
+        Query query = new Query();
+        firstLvlDiv.setItems(query.getDivisions(country.getSelectionModel().getSelectedItem()));
     }
 
 }
