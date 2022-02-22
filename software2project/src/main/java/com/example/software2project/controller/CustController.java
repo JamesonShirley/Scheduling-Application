@@ -1,6 +1,7 @@
 package com.example.software2project.controller;
 
 import com.example.software2project.Main;
+import com.example.software2project.model.Query;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,8 +13,13 @@ import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class CustController {
+    public void initialize() throws SQLException {
+        Query query = new Query();
+        query.customers();
+    }
     Stage stage;
     Parent scene;
 

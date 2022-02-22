@@ -19,4 +19,19 @@ public class Query {
         temp.closeConnection();
         return count == 1;
     }
+    public static void customers() throws SQLException {
+        JDBC temp = new JDBC();
+        temp.makeConnection();
+        temp.makePreparedStatement("SELECT c.Customer_ID, c.Customer_Name, c.Address, f.Division, co.Country, c.Postal_Code, c.Phone\n" +
+                "FROM customers c\n" + "INNER JOIN first_level_divisions f ON f.Division_ID = c.Division_ID\n" +
+                "INNER JOIN countries co ON co.Country_ID = f.Country_ID",temp.getConnection());
+        ResultSet results = temp.getPreparedStatement().executeQuery();
+        while (results.next()){
+            new Customer(results.getInt("Customer_ID"),
+                    results.getString("Customer_Name"), results.getString("Address"), results.getString("Division"), results.getString("Country"), results.getString("Postal_Code"), results.getString("Phone"));
+                    System.out.println(results.getString("Customer_Name"));
+                }
+        temp.closeConnection();
+    }
 }
+
