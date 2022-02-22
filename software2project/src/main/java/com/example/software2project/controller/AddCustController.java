@@ -1,6 +1,7 @@
 package com.example.software2project.controller;
 
 import com.example.software2project.Main;
+import com.example.software2project.model.Customer;
 import com.example.software2project.model.Query;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -56,10 +57,22 @@ public class AddCustController {
 
     @FXML
     void onSaveBtnClick(ActionEvent event) throws IOException {
-        stage = (Stage)((Button)event.getSource()).getScene().getWindow();
-        scene = FXMLLoader.load(Main.class.getResource("customers.fxml"));
-        stage.setScene(new Scene(scene));
-        stage.show();
+        try {
+            Query query = new Query();
+            int div = query.getDivId(firstLvlDiv.getSelectionModel().getSelectedItem());
+            Customer cust = new Customer(1, name.getText(), address.getText(), "Placeholder", "Placeholder", postal.getText(), phone.getText());
+            query.addCust(cust.getName(), cust.getAddress(), cust.getCode(), cust.getPhone(), div);
+            stage = (Stage)((Button)event.getSource()).getScene().getWindow();
+            scene = FXMLLoader.load(Main.class.getResource("customers.fxml"));
+            stage.setScene(new Scene(scene));
+            stage.show();
+        }
+        catch (NumberFormatException e){
+            System.out.println("Error message here Format");
+        } catch (SQLException e) {
+            System.out.println("Error message here SQL");
+        }
+
 
     }
 

@@ -72,6 +72,21 @@ public class Query {
         temp.getPreparedStatement().executeUpdate();
         temp.closeConnection();
     }
+    public static void updateCust(int id, String name, String address, String code, String phone, int divId) throws SQLException {
+        JDBC temp = new JDBC();
+        temp.makeConnection();
+        temp.makePreparedStatement("UPDATE customers\n" +
+                "SET Customer_Name = ?, Address = ?, Postal_Code = ?, Phone = ?, Division_ID = ?\n" +
+                "WHERE Customer_ID = ?",temp.getConnection());
+        temp.getPreparedStatement().setString(1, name);
+        temp.getPreparedStatement().setString(2, address);
+        temp.getPreparedStatement().setString(3, code);
+        temp.getPreparedStatement().setString(4, phone);
+        temp.getPreparedStatement().setInt(5, divId);
+        temp.getPreparedStatement().setInt(6, id);
+        temp.getPreparedStatement().executeUpdate();
+        temp.closeConnection();
+    }
     public static ObservableList<String> getCountries() throws SQLException {
         JDBC temp = new JDBC();
         temp.makeConnection();
@@ -111,6 +126,20 @@ public class Query {
         int value = 0;
         while (results.next()) {
             value = results.getInt("Division_ID");
+        }
+        temp.closeConnection();
+        return value;
+    }
+    public static int getCountryId(String country) throws SQLException {
+        JDBC temp = new JDBC();
+        temp.makeConnection();
+        temp.makePreparedStatement("SELECT Country_ID\n" +
+                "FROM countries\n" + "WHERE Country = ?",temp.getConnection());
+        temp.getPreparedStatement().setString(1, country);
+        ResultSet results = temp.getPreparedStatement().executeQuery();
+        int value = 0;
+        while (results.next()) {
+            value = results.getInt("Country_ID");
         }
         temp.closeConnection();
         return value;

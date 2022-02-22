@@ -89,10 +89,15 @@ public class CustController {
     }
 
     @FXML
-    void onModifyBtnClicked(ActionEvent event) throws IOException {
+    void onModifyBtnClicked(ActionEvent event) throws IOException, SQLException {
         stage = (Stage)((Button)event.getSource()).getScene().getWindow();
-        scene = FXMLLoader.load(Main.class.getResource("modifyCust.fxml"));
-        stage.setScene(new Scene(scene));
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("modifyCust.fxml"));
+        Scene scene = new Scene(loader.load());
+        ModifyCustController MCC = loader.getController();
+        MCC.sendCust(custTable.getSelectionModel().getSelectedItem());
+        stage.setTitle("");
+        stage.setScene(scene);
         stage.show();
 
 
