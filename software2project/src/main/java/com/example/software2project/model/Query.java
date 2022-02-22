@@ -8,6 +8,7 @@ import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 
 public class Query {
     public static Boolean login(String user, String pass) throws SQLException {
@@ -52,6 +53,50 @@ public class Query {
                     results.getString("Title"), results.getString("Description"), results.getString("Location"), results.getString("Contact_Name"), results.getString("Type"), startString, endString, results.getInt("Customer_ID"), results.getInt("User_ID")));
         }
         temp.closeConnection();
+    }
+    //TODO add monthly and weekly options
+
+
+    public static void addCust(String name, String address, String code, String phone, int divId) throws SQLException {
+        JDBC temp = new JDBC();
+        temp.makeConnection();
+        temp.makePreparedStatement("INSERT INTO customers (Customer_Name, Address, Postal_Code, Phone, Division_ID)\n" +
+                "VALUES(?,?,?,?,?)",temp.getConnection());
+        temp.getPreparedStatement().setString(1, name);
+        temp.getPreparedStatement().setString(2, address);
+        temp.getPreparedStatement().setString(3, code);
+        temp.getPreparedStatement().setString(4, phone);
+        temp.getPreparedStatement().setInt(5, divId);
+        temp.getPreparedStatement().executeUpdate();
+        temp.closeConnection();
+    }
+    public static String[] getCountries() throws SQLException {
+        JDBC temp = new JDBC();
+        temp.makeConnection();
+        temp.makePreparedStatement("SELECT Country\n" +
+                "FROM countries",temp.getConnection());
+        ResultSet results = temp.getPreparedStatement().executeQuery();
+        String[] arr = {};
+        while (results.next()){
+            arr = Arrays.copyOf(arr, arr.length + 1);
+            arr[arr.length - 1] = results.getString("Country");
+        }
+        temp.closeConnection();
+        return arr;
+    }
+    public static String[] getDivisions() throws SQLException {
+        JDBC temp = new JDBC();
+        temp.makeConnection();
+        temp.makePreparedStatement("SELECT Division\n" +
+                "FROM first_level_divisions",temp.getConnection());
+        ResultSet results = temp.getPreparedStatement().executeQuery();
+        String[] arr = {};
+        while (results.next()){
+            arr = Arrays.copyOf(arr, arr.length + 1);
+            arr[arr.length - 1] = results.getString("Division");
+        }
+        temp.closeConnection();
+        return arr;
     }
 }
 
