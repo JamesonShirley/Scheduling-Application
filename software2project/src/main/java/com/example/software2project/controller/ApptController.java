@@ -62,6 +62,7 @@ public class ApptController {
     @FXML
     private TableColumn<Appointment, LocalDateTime> endCol;
 
+
     @FXML
     private TableColumn<Appointment, Integer> idCol;
 
@@ -70,6 +71,7 @@ public class ApptController {
 
     @FXML
     private TableColumn<Appointment, LocalDateTime> startCol;
+
 
     @FXML
     private TableColumn<Appointment, String> titleCol;

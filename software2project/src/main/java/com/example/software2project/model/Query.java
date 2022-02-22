@@ -4,6 +4,10 @@ import com.example.software2project.JDBC;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Query {
     public static Boolean login(String user, String pass) throws SQLException {
@@ -33,14 +37,19 @@ public class Query {
         temp.closeConnection();
     }
     public static void apptMonth() throws SQLException {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy - HH:mm");
         JDBC temp = new JDBC();
         temp.makeConnection();
         temp.makePreparedStatement("SELECT a.Appointment_ID, a.Title, a.Description, a.Location, c.Contact_Name, a.Type, a.Start, a.End, a.Customer_ID, a.User_ID\n" +
                 "FROM appointments a\n" + "INNER JOIN contacts c ON c.Contact_ID = a.Contact_ID",temp.getConnection());
         ResultSet results = temp.getPreparedStatement().executeQuery();
         while (results.next()){
+            ZonedDateTime start = ZonedDateTime.ofInstant(results.getTimestamp("Start").toInstant(), ZoneId.of(ZoneId.systemDefault().getId()));
+            String startString = start.format(formatter);
+            ZonedDateTime end = ZonedDateTime.ofInstant(results.getTimestamp("End").toInstant(), ZoneId.of(ZoneId.systemDefault().getId()));
+            String endString = end.format(formatter);
             ApptList.addAppt(new Appointment(results.getInt("Appointment_ID"),
-                    results.getString("Title"), results.getString("Description"), results.getString("Location"), results.getString("Contact_Name"), results.getString("Type"), results.getTimestamp("Start").toLocalDateTime(), results.getTimestamp("End").toLocalDateTime(), results.getInt("Customer_ID"), results.getInt("User_ID")));
+                    results.getString("Title"), results.getString("Description"), results.getString("Location"), results.getString("Contact_Name"), results.getString("Type"), startString, endString, results.getInt("Customer_ID"), results.getInt("User_ID")));
         }
         temp.closeConnection();
     }

@@ -1,6 +1,11 @@
 package com.example.software2project.model;
 
+import java.sql.Time;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.ZonedDateTime;
+import java.util.Date;
 
 public class Appointment {
     private int id;
@@ -9,11 +14,11 @@ public class Appointment {
     private String loc;
     private String contact;
     private String type;
-    private LocalDateTime start;
-    private LocalDateTime end;
+    private String start;
+    private String end;
     private int custId;
     private int userId;
-    public Appointment(int id, String title, String description, String loc, String contact, String type, LocalDateTime start, LocalDateTime end, int custId, int userId){
+    public Appointment(int id, String title, String description, String loc, String contact, String type, String start, String end, int custId, int userId){
         this.id = id;
         this.title = title;
         this.description = description;
@@ -74,21 +79,6 @@ public class Appointment {
         this.type = type;
     }
 
-    public LocalDateTime getStart() {
-        return start;
-    }
-
-    public void setStart(LocalDateTime start) {
-        this.start = start;
-    }
-
-    public LocalDateTime getEnd() {
-        return end;
-    }
-
-    public void setEnd(LocalDateTime end) {
-        this.end = end;
-    }
 
     public int getCustId() {
         return custId;
@@ -104,5 +94,21 @@ public class Appointment {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    public String getStart() {
+        return start;
+    }
+
+    public void setStart(String start) {
+        this.start = start;
+    }
+
+    public String getEnd() {
+        return end;
+    }
+
+    public void setEnd(String end) {
+        this.end = end;
     }
 }
