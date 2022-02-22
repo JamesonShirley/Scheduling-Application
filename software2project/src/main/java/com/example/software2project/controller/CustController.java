@@ -31,6 +31,9 @@ public class CustController {
         phoneCol.setCellValueFactory(new PropertyValueFactory<>("phone"));
         stateCol.setCellValueFactory(new PropertyValueFactory<>("state"));
         idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        if(CustList.getAllCust().size() > 0){
+            custTable.getSelectionModel().select(0);
+        }
 
     }
     Stage stage;

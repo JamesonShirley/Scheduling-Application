@@ -32,5 +32,17 @@ public class Query {
         }
         temp.closeConnection();
     }
+    public static void apptMonth() throws SQLException {
+        JDBC temp = new JDBC();
+        temp.makeConnection();
+        temp.makePreparedStatement("SELECT a.Appointment_ID, a.Title, a.Description, a.Location, c.Contact_Name, a.Type, a.Start, a.End, a.Customer_ID, a.User_ID\n" +
+                "FROM appointments a\n" + "INNER JOIN contacts c ON c.Contact_ID = a.Contact_ID",temp.getConnection());
+        ResultSet results = temp.getPreparedStatement().executeQuery();
+        while (results.next()){
+            ApptList.addAppt(new Appointment(results.getInt("Appointment_ID"),
+                    results.getString("Title"), results.getString("Description"), results.getString("Location"), results.getString("Contact_Name"), results.getString("Type"), results.getTimestamp("Start").toLocalDateTime(), results.getTimestamp("End").toLocalDateTime(), results.getInt("Customer_ID"), results.getInt("User_ID")));
+        }
+        temp.closeConnection();
+    }
 }
 
