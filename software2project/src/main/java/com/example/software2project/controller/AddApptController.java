@@ -1,6 +1,8 @@
 package com.example.software2project.controller;
 
 import com.example.software2project.Main;
+import com.example.software2project.model.Query;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,13 +15,18 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class AddApptController {
+    public void initialize() throws SQLException {
+        Query query = new Query();
+        contact.setItems(query.getContacts());
+    }
     Stage stage;
     Parent scene;
 
     @FXML
-    private ComboBox<?> contact;
+    private ComboBox<String> contact;
 
     @FXML
     private TextField custID;

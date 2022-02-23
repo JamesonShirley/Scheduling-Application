@@ -10,7 +10,7 @@ import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
+
 
 public class Query {
     public static Boolean login(String user, String pass) throws SQLException {
@@ -152,6 +152,19 @@ public class Query {
         temp.getPreparedStatement().setInt(1, id);
         temp.getPreparedStatement().executeUpdate();
         temp.closeConnection();
+    }
+    public static ObservableList<String> getContacts() throws SQLException {
+        JDBC temp = new JDBC();
+        temp.makeConnection();
+        temp.makePreparedStatement("SELECT Contact_Name\n" +
+                "FROM contacts",temp.getConnection());
+        ResultSet results = temp.getPreparedStatement().executeQuery();
+        ObservableList<String> contacts = FXCollections.observableArrayList();
+        while (results.next()){
+            contacts.add(results.getString("Contact_Name"));
+        }
+        temp.closeConnection();
+        return contacts;
     }
 }
 
