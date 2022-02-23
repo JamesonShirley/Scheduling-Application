@@ -144,5 +144,14 @@ public class Query {
         temp.closeConnection();
         return value;
     }
+    public static void deleteCust(int id) throws SQLException {
+        JDBC temp = new JDBC();
+        temp.makeConnection();
+        temp.makePreparedStatement("DELETE FROM customers\n" +
+                "WHERE Customer_ID = ?",temp.getConnection());
+        temp.getPreparedStatement().setInt(1, id);
+        temp.getPreparedStatement().executeUpdate();
+        temp.closeConnection();
+    }
 }
 

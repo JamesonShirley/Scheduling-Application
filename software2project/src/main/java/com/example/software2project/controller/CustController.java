@@ -84,8 +84,22 @@ public class CustController {
     }
 
     @FXML
-    void onDeleteBtnClicked(ActionEvent event) {
-
+    void onDeleteBtnClicked(ActionEvent event) throws SQLException {
+        Query query = new Query();
+        query.deleteCust(custTable.getSelectionModel().getSelectedItem().getId());
+        CustList.deleteAllCust();
+        query.customers();
+        custTable.setItems(CustList.getAllCust());
+        addCol.setCellValueFactory(new PropertyValueFactory<>("address"));
+        codeCol.setCellValueFactory(new PropertyValueFactory<>("code"));
+        countryCol.setCellValueFactory(new PropertyValueFactory<>("country"));
+        nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+        phoneCol.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        stateCol.setCellValueFactory(new PropertyValueFactory<>("state"));
+        idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        if(CustList.getAllCust().size() > 0){
+            custTable.getSelectionModel().select(0);
+        }
     }
 
     @FXML
