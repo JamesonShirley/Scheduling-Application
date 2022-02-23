@@ -6,10 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -31,8 +28,11 @@ public class LoginReportController {
     private TableColumn<?, ?> userCol;
 
     @FXML
-    void loginSel(ActionEvent event) {
-
+    void loginSel(ActionEvent event) throws IOException {
+        stage = (Stage)((RadioButton)event.getSource()).getScene().getWindow();
+        scene = FXMLLoader.load(Main.class.getResource("loginRep.fxml"));
+        stage.setScene(new Scene(scene));
+        stage.show();
     }
 
     @FXML
@@ -52,13 +52,19 @@ public class LoginReportController {
     }
 
     @FXML
-    void overviewSel(ActionEvent event) {
-
+    void overviewSel(ActionEvent event) throws IOException {
+        stage = (Stage)((RadioButton)event.getSource()).getScene().getWindow();
+        scene = FXMLLoader.load(Main.class.getResource("apptOverview.fxml"));
+        stage.setScene(new Scene(scene));
+        stage.show();
     }
 
     @FXML
-    void scheduleSel(ActionEvent event) {
-
+    void scheduleSel(ActionEvent event) throws IOException {
+        stage = (Stage)((RadioButton)event.getSource()).getScene().getWindow();
+        scene = FXMLLoader.load(Main.class.getResource("schedule.fxml"));
+        stage.setScene(new Scene(scene));
+        stage.show();
     }
 
 }

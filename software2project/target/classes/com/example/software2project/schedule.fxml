@@ -31,15 +31,15 @@
          </font>
       </Text>
       <Button layoutX="655.0" layoutY="377.0" mnemonicParsing="false" onAction="#onCustomerBtnClicked" text="Customers" />
-      <Button layoutX="546.0" layoutY="377.0" mnemonicParsing="false" onAction="#onReportBtnClicked" text="Appointments" />
-      <ComboBox layoutX="606.0" layoutY="46.0" prefWidth="150.0" />
+      <Button layoutX="546.0" layoutY="377.0" mnemonicParsing="false" onAction="#onApptBtnClicked" text="Appointments" />
+      <ComboBox fx:id="user" layoutX="606.0" layoutY="46.0" onAction="#userChange" prefWidth="150.0" />
       <Label layoutX="562.0" layoutY="50.0" text="User" />
-      <RadioButton layoutX="41.0" layoutY="22.0" mnemonicParsing="false" onAction="#overviewSel" text="Appointment Overview">
+      <RadioButton fx:id="apptOverviewSel" layoutX="41.0" layoutY="22.0" mnemonicParsing="false" onAction="#overviewSel" text="Appointment Overview">
          <toggleGroup>
             <ToggleGroup fx:id="report" />
          </toggleGroup>
       </RadioButton>
-      <RadioButton layoutX="41.0" layoutY="50.0" mnemonicParsing="false" onAction="#scheduleSel" selected="true" text="Schedule" toggleGroup="$report" />
-      <RadioButton layoutX="41.0" layoutY="78.0" mnemonicParsing="false" onAction="#loginSel" text="Login Attempts" toggleGroup="$report" />
+      <RadioButton fx:id="scheduleSel" layoutX="41.0" layoutY="50.0" mnemonicParsing="false" onAction="#scheduleSel" selected="true" text="Schedule" toggleGroup="$report" />
+      <RadioButton fx:id="loginSel" layoutX="41.0" layoutY="78.0" mnemonicParsing="false" onAction="#loginSel" text="Login Attempts" toggleGroup="$report" />
    </children>
 </AnchorPane>

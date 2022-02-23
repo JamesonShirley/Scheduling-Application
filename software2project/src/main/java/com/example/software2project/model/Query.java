@@ -92,6 +92,25 @@ public class Query {
         temp.closeConnection();
     }
 
+    public static void userAppt(int userID) throws SQLException {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy - HH:mm");
+        JDBC temp = new JDBC();
+        temp.makeConnection();
+        temp.makePreparedStatement("SELECT a.Appointment_ID, a.Title, a.Description, a.Location, c.Contact_Name, a.Type, a.Start, a.End, a.Customer_ID, a.User_ID\n" +
+                "FROM appointments a\n" + "INNER JOIN contacts c ON c.Contact_ID = a.Contact_ID\n" + "WHERE a.User_ID = ?",temp.getConnection());
+        temp.getPreparedStatement().setInt(1, userID);
+        ResultSet results = temp.getPreparedStatement().executeQuery();
+        while (results.next()){
+            ZonedDateTime start = ZonedDateTime.ofInstant(results.getTimestamp("Start").toInstant(), ZoneId.of(ZoneId.systemDefault().getId()));
+            String startString = start.format(formatter);
+            ZonedDateTime end = ZonedDateTime.ofInstant(results.getTimestamp("End").toInstant(), ZoneId.of(ZoneId.systemDefault().getId()));
+            String endString = end.format(formatter);
+            ApptList.addAppt(new Appointment(results.getInt("Appointment_ID"),
+                    results.getString("Title"), results.getString("Description"), results.getString("Location"), results.getString("Contact_Name"), results.getString("Type"), startString, endString, results.getInt("Customer_ID"), results.getInt("User_ID")));
+        }
+        temp.closeConnection();
+    }
+
 
     public static void addCust(String name, String address, String code, String phone, int divId) throws SQLException {
         JDBC temp = new JDBC();
@@ -267,6 +286,8 @@ public class Query {
         temp.getPreparedStatement().executeUpdate();
         temp.closeConnection();
     }
+
+
 
 }
 

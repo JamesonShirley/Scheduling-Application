@@ -17,7 +17,7 @@
          </font>
       </Text>
       <Button layoutX="655.0" layoutY="377.0" mnemonicParsing="false" onAction="#onCustomerBtnClicked" text="Customers" />
-      <Button layoutX="546.0" layoutY="377.0" mnemonicParsing="false" onAction="#onReportBtnClicked" text="Appointments" />
+      <Button layoutX="546.0" layoutY="377.0" mnemonicParsing="false" onAction="#onApptBtnClicked" text="Appointments" />
       <RadioButton layoutX="41.0" layoutY="22.0" mnemonicParsing="false" onAction="#apptOverviewSel" selected="true" text="Appointment Overview">
          <toggleGroup>
             <ToggleGroup fx:id="report" />
