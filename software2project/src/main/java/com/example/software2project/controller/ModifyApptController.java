@@ -99,7 +99,7 @@ public class ModifyApptController {
     }
     public void sendAppt(Appointment appt) throws SQLException {
         String[] arrEnd = appt.getEnd().split(" ", 3);
-        String[] arrStart = appt.getEnd().split(" ", 3);
+        String[] arrStart = appt.getStart().split(" ", 3);
         Query query = new Query();
         contact.setItems(query.getContacts());
         contact.getSelectionModel().select(appt.getContact());
@@ -109,7 +109,7 @@ public class ModifyApptController {
         endDate.setText(String.valueOf(arrEnd[0]));
         endTime.setText(String.valueOf(arrEnd[2]));
         startDate.setText(String.valueOf(arrStart[0]));
-        startTime.setText(String.valueOf(arrEnd[2]));
+        startTime.setText(String.valueOf(arrStart[2]));
         loc.setText(String.valueOf(appt.getLoc()));
         title.setText(String.valueOf(appt.getTitle()));
         type.setText(String.valueOf(appt.getType()));
