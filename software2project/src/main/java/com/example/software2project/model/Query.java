@@ -6,8 +6,10 @@ import javafx.collections.ObservableList;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.time.Instant;
 import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -165,6 +167,37 @@ public class Query {
         }
         temp.closeConnection();
         return contacts;
+    }
+    public static int getContactId(String contact) throws SQLException {
+        JDBC temp = new JDBC();
+        temp.makeConnection();
+        temp.makePreparedStatement("SELECT Contact_ID\n" +
+                "FROM contacts\n" + "WHERE Contact_name = ?",temp.getConnection());
+        temp.getPreparedStatement().setString(1, contact);
+        ResultSet results = temp.getPreparedStatement().executeQuery();
+        int contactId = 0;
+        while (results.next()){
+            contactId = results.getInt("Contact_ID");
+        }
+        temp.closeConnection();
+        return contactId;
+    }
+    public static void addAppt(String title, String description, String loc, int contact, String type, ZonedDateTime start, ZonedDateTime end, int custId, int userId) throws SQLException {
+        JDBC temp = new JDBC();
+        temp.makeConnection();
+        temp.makePreparedStatement("INSERT INTO appointments (Title, Description, Location, Type, Start, End, Customer_ID, User_ID, Contact_ID)\n" +
+                "VALUES(?,?,?,?,?,?,?,?,?)",temp.getConnection());
+        temp.getPreparedStatement().setString(1, title);
+        temp.getPreparedStatement().setString(2, description);
+        temp.getPreparedStatement().setString(3, loc);
+        temp.getPreparedStatement().setString(4, type);
+        temp.getPreparedStatement().setTimestamp(5, Timestamp.from(start.withZoneSameInstant(ZoneOffset.UTC).toInstant()));
+        temp.getPreparedStatement().setTimestamp(6, Timestamp.from(end.withZoneSameInstant(ZoneOffset.UTC).toInstant()));
+        temp.getPreparedStatement().setInt(7, custId);
+        temp.getPreparedStatement().setInt(8, userId);
+        temp.getPreparedStatement().setInt(9, contact);
+        temp.getPreparedStatement().executeUpdate();
+        temp.closeConnection();
     }
 }
 
