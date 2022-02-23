@@ -86,6 +86,7 @@ public class CustController {
     @FXML
     void onDeleteBtnClicked(ActionEvent event) throws SQLException {
         Query query = new Query();
+        query.deleteApptCustomer(custTable.getSelectionModel().getSelectedItem().getId());
         query.deleteCust(custTable.getSelectionModel().getSelectedItem().getId());
         CustList.deleteAllCust();
         query.customers();

@@ -24,7 +24,7 @@ public class ApptController {
     public void initialize() throws SQLException {
         ApptList.deleteAllAppt();
         Query query = new Query();
-        query.apptMonth();
+        query.allAppt();
         apptTable.setItems(ApptList.getAllAppt());
         conCol.setCellValueFactory(new PropertyValueFactory<>("contact"));
         custCol.setCellValueFactory(new PropertyValueFactory<>("custId"));
@@ -105,15 +105,38 @@ public class ApptController {
     }
 
     @FXML
-    void onDeleteBtnClicked(ActionEvent event) {
-
+    void onDeleteBtnClicked(ActionEvent event) throws SQLException {
+        Query query = new Query();
+        query.deleteApptId(apptTable.getSelectionModel().getSelectedItem().getId());
+        ApptList.deleteAllAppt();
+        query.allAppt();
+        apptTable.setItems(ApptList.getAllAppt());
+        conCol.setCellValueFactory(new PropertyValueFactory<>("contact"));
+        custCol.setCellValueFactory(new PropertyValueFactory<>("custId"));
+        descCol.setCellValueFactory(new PropertyValueFactory<>("description"));
+        endCol.setCellValueFactory(new PropertyValueFactory<>("end"));
+        locCol.setCellValueFactory(new PropertyValueFactory<>("loc"));
+        startCol.setCellValueFactory(new PropertyValueFactory<>("start"));
+        idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
+        typeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
+        userCol.setCellValueFactory(new PropertyValueFactory<>("userId"));
+        if(ApptList.getAllAppt().size() > 0){
+            apptTable.getSelectionModel().select(0);
+        }
     }
 
     @FXML
-    void onModifyBtnClicked(ActionEvent event) throws IOException {
+    void onModifyBtnClicked(ActionEvent event) throws IOException, SQLException {
         stage = (Stage)((Button)event.getSource()).getScene().getWindow();
-        scene = FXMLLoader.load(Main.class.getResource("modifyAppt.fxml"));
-        stage.setScene(new Scene(scene));
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("modifyAppt.fxml"));
+        Scene scene = new Scene(loader.load());
+        ModifyApptController MAC = loader.getController();
+        MAC.sendAppt(apptTable.getSelectionModel().getSelectedItem());
+        System.out.println(apptTable.getSelectionModel().getSelectedItem().getId());
+        stage.setTitle("");
+        stage.setScene(scene);
         stage.show();
 
     }
@@ -126,6 +149,27 @@ public class ApptController {
     @FXML
     void weeklySelect(ActionEvent event) {
 
+    }
+
+    @FXML
+    void allSelect(ActionEvent event) throws SQLException {
+        ApptList.deleteAllAppt();
+        Query query = new Query();
+        query.allAppt();
+        apptTable.setItems(ApptList.getAllAppt());
+        conCol.setCellValueFactory(new PropertyValueFactory<>("contact"));
+        custCol.setCellValueFactory(new PropertyValueFactory<>("custId"));
+        descCol.setCellValueFactory(new PropertyValueFactory<>("description"));
+        endCol.setCellValueFactory(new PropertyValueFactory<>("end"));
+        locCol.setCellValueFactory(new PropertyValueFactory<>("loc"));
+        startCol.setCellValueFactory(new PropertyValueFactory<>("start"));
+        idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
+        typeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
+        userCol.setCellValueFactory(new PropertyValueFactory<>("userId"));
+        if(ApptList.getAllAppt().size() > 0){
+            apptTable.getSelectionModel().select(0);
+        }
     }
 
 }

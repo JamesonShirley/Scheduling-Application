@@ -30,16 +30,21 @@
             <Font size="24.0" />
          </font>
       </Text>
-      <RadioButton layoutX="318.0" layoutY="75.0" mnemonicParsing="false" onAction="#monthlySelect" selected="true" text="Monthly">
+      <RadioButton layoutX="392.0" layoutY="75.0" mnemonicParsing="false" onAction="#monthlySelect" text="Monthly">
          <toggleGroup>
             <ToggleGroup fx:id="apptFilter" />
          </toggleGroup>
       </RadioButton>
-      <RadioButton layoutX="402.0" layoutY="75.0" mnemonicParsing="false" onAction="#weeklySelect" text="Weekly" toggleGroup="$apptFilter" />
+      <RadioButton layoutX="468.0" layoutY="75.0" mnemonicParsing="false" onAction="#weeklySelect" text="Weekly" toggleGroup="$apptFilter" />
       <Button layoutX="655.0" layoutY="324.0" mnemonicParsing="false" onAction="#onDeleteBtnClicked" text="Delete" />
       <Button layoutX="529.0" layoutY="324.0" mnemonicParsing="false" onAction="#onAddBtnClicked" text="Add" />
       <Button layoutX="586.0" layoutY="324.0" mnemonicParsing="false" onAction="#onModifyBtnClicked" text="Modify" />
       <Button layoutX="655.0" layoutY="377.0" mnemonicParsing="false" onAction="#onCustomerBtnClicked" text="Customers" />
       <Button layoutX="574.0" layoutY="377.0" mnemonicParsing="false" onAction="#onReportBtnClicked" text="Reports" />
+      <RadioButton layoutX="344.0" layoutY="75.0" mnemonicParsing="false" onAction="#allSelect" selected="true" text="All">
+         <toggleGroup>
+            <ToggleGroup fx:id="apptFilter1" />
+         </toggleGroup>
+      </RadioButton>
    </children>
 </AnchorPane>

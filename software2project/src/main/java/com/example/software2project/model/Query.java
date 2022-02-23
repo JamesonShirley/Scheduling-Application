@@ -7,7 +7,6 @@ import javafx.collections.ObservableList;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
@@ -41,7 +40,7 @@ public class Query {
         }
         temp.closeConnection();
     }
-    public static void apptMonth() throws SQLException {
+    public static void allAppt() throws SQLException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy - HH:mm");
         JDBC temp = new JDBC();
         temp.makeConnection();
@@ -199,5 +198,42 @@ public class Query {
         temp.getPreparedStatement().executeUpdate();
         temp.closeConnection();
     }
+    public static void updateAppt(int id, String title, String description, String loc, int contact, String type, ZonedDateTime start, ZonedDateTime end, int custId, int userId) throws SQLException {
+        JDBC temp = new JDBC();
+        temp.makeConnection();
+        temp.makePreparedStatement("Update appointments\n" +
+                "SET Title = ?, Description = ?, Location = ?, Type = ?, Start = ?, End= ?, Customer_ID = ?, User_ID = ?, Contact_ID = ?\n" + "WHERE Appointment_ID = ?",temp.getConnection());
+        temp.getPreparedStatement().setString(1, title);
+        temp.getPreparedStatement().setString(2, description);
+        temp.getPreparedStatement().setString(3, loc);
+        temp.getPreparedStatement().setString(4, type);
+        temp.getPreparedStatement().setTimestamp(5, Timestamp.from(start.withZoneSameInstant(ZoneOffset.UTC).toInstant()));
+        temp.getPreparedStatement().setTimestamp(6, Timestamp.from(end.withZoneSameInstant(ZoneOffset.UTC).toInstant()));
+        temp.getPreparedStatement().setInt(7, custId);
+        temp.getPreparedStatement().setInt(8, userId);
+        temp.getPreparedStatement().setInt(9, contact);
+        temp.getPreparedStatement().setInt(10, id);
+        temp.getPreparedStatement().executeUpdate();
+        temp.closeConnection();
+    }
+    public static void deleteApptId(int id) throws SQLException {
+        JDBC temp = new JDBC();
+        temp.makeConnection();
+        temp.makePreparedStatement("DELETE FROM appointments\n" +
+                "WHERE Appointment_ID = ?",temp.getConnection());
+        temp.getPreparedStatement().setInt(1, id);
+        temp.getPreparedStatement().executeUpdate();
+        temp.closeConnection();
+    }
+    public static void deleteApptCustomer(int id) throws SQLException {
+        JDBC temp = new JDBC();
+        temp.makeConnection();
+        temp.makePreparedStatement("DELETE FROM appointments\n" +
+                "WHERE Customer_ID = ?",temp.getConnection());
+        temp.getPreparedStatement().setInt(1, id);
+        temp.getPreparedStatement().executeUpdate();
+        temp.closeConnection();
+    }
+
 }
 
