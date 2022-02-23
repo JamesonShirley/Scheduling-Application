@@ -9,10 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -46,6 +43,10 @@ public class ApptController {
 
     @FXML
     private ToggleGroup apptFilter;
+
+    @FXML
+    private RadioButton all;
+
 
     @FXML
     private TableView<Appointment> apptTable;
@@ -83,8 +84,24 @@ public class ApptController {
     private TableColumn<Appointment, Integer> userCol;
 
     @FXML
-    void monthlySelect(ActionEvent event) {
-
+    void monthlySelect(ActionEvent event) throws SQLException {
+        ApptList.deleteAllAppt();
+        Query query = new Query();
+        query.monthAppt();
+        apptTable.setItems(ApptList.getAllAppt());
+        conCol.setCellValueFactory(new PropertyValueFactory<>("contact"));
+        custCol.setCellValueFactory(new PropertyValueFactory<>("custId"));
+        descCol.setCellValueFactory(new PropertyValueFactory<>("description"));
+        endCol.setCellValueFactory(new PropertyValueFactory<>("end"));
+        locCol.setCellValueFactory(new PropertyValueFactory<>("loc"));
+        startCol.setCellValueFactory(new PropertyValueFactory<>("start"));
+        idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
+        typeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
+        userCol.setCellValueFactory(new PropertyValueFactory<>("userId"));
+        if(ApptList.getAllAppt().size() > 0){
+            apptTable.getSelectionModel().select(0);
+        }
     }
 
     @FXML
@@ -106,6 +123,8 @@ public class ApptController {
 
     @FXML
     void onDeleteBtnClicked(ActionEvent event) throws SQLException {
+        int id = apptTable.getSelectionModel().getSelectedItem().getId();
+        String type = apptTable.getSelectionModel().getSelectedItem().getType();
         Query query = new Query();
         query.deleteApptId(apptTable.getSelectionModel().getSelectedItem().getId());
         ApptList.deleteAllAppt();
@@ -124,6 +143,11 @@ public class ApptController {
         if(ApptList.getAllAppt().size() > 0){
             apptTable.getSelectionModel().select(0);
         }
+        all.selectedProperty().setValue(Boolean.TRUE);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Appointment Cancelled");
+        alert.setContentText("Appointment " + id + " of type " + type + " has been successfully cancelled.");
+        alert.showAndWait();
     }
 
     @FXML
@@ -142,13 +166,32 @@ public class ApptController {
     }
 
     @FXML
-    void onReportBtnClicked(ActionEvent event) {
-
+    void onReportBtnClicked(ActionEvent event) throws IOException {
+        stage = (Stage)((Button)event.getSource()).getScene().getWindow();
+        scene = FXMLLoader.load(Main.class.getResource("apptOverview.fxml"));
+        stage.setScene(new Scene(scene));
+        stage.show();
     }
 
     @FXML
-    void weeklySelect(ActionEvent event) {
-
+    void weeklySelect(ActionEvent event) throws SQLException {
+        ApptList.deleteAllAppt();
+        Query query = new Query();
+        query.weekAppt();
+        apptTable.setItems(ApptList.getAllAppt());
+        conCol.setCellValueFactory(new PropertyValueFactory<>("contact"));
+        custCol.setCellValueFactory(new PropertyValueFactory<>("custId"));
+        descCol.setCellValueFactory(new PropertyValueFactory<>("description"));
+        endCol.setCellValueFactory(new PropertyValueFactory<>("end"));
+        locCol.setCellValueFactory(new PropertyValueFactory<>("loc"));
+        startCol.setCellValueFactory(new PropertyValueFactory<>("start"));
+        idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
+        typeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
+        userCol.setCellValueFactory(new PropertyValueFactory<>("userId"));
+        if(ApptList.getAllAppt().size() > 0){
+            apptTable.getSelectionModel().select(0);
+        }
     }
 
     @FXML

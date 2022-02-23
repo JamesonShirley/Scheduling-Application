@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -22,7 +23,13 @@ public class LoginController {
     public void initialize(){
         localeDateTime.setText(String.valueOf(ZoneId.of(ZoneId.systemDefault().getId())));
         Locale locale = Locale.getDefault();
-        System.out.println(locale.getDisplayLanguage());
+        if(locale.getLanguage() == "fr"){
+            localTimeZone.setText("Fuseau horaire local");
+            login.setText("Connexion");
+            passwordText.setText("Mot de passe");
+            usernameText.setText("Nom d'utilisateur");
+            welcome.setText("Bienvenue");
+        }
     }
     Stage stage;
     Parent scene;
@@ -61,7 +68,19 @@ public class LoginController {
             stage.show();
         }
         else{
-            System.out.println("Error Message Here");
+            Locale locale = Locale.getDefault();
+            if(locale.getLanguage() == "fr"){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Identifiant ou mot de passe incorrect");
+                alert.setContentText("Veuillez entrer des informations d'identification valides");
+                alert.showAndWait();
+            }
+            else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Incorrect Username or Password");
+                alert.setContentText("Please enter valid credentials");
+                alert.showAndWait();
+            }
         }
 
     }

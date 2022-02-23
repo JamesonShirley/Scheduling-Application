@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="424.0" prefWidth="799.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.software2project.controller.LoginReportController">
+   <children>
+      <Text layoutX="348.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login Attempts">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Button layoutX="655.0" layoutY="377.0" mnemonicParsing="false" onAction="#onCustomerBtnClicked" text="Customers" />
+      <Button layoutX="546.0" layoutY="377.0" mnemonicParsing="false" onAction="#onApptBtnClicked" text="Appointments" />
+      <RadioButton layoutX="41.0" layoutY="22.0" mnemonicParsing="false" onAction="#overviewSel" text="Appointment Overview">
+         <toggleGroup>
+            <ToggleGroup fx:id="report" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton layoutX="41.0" layoutY="50.0" mnemonicParsing="false" onAction="#scheduleSel" text="Schedule" toggleGroup="$report" />
+      <RadioButton layoutX="41.0" layoutY="78.0" mnemonicParsing="false" onAction="#loginSel" selected="true" text="Login Attempts" toggleGroup="$report" />
+      <TableView fx:id="loginTable" layoutX="235.0" layoutY="95.0" prefHeight="200.0" prefWidth="389.0">
+        <columns>
+          <TableColumn fx:id="userCol" prefWidth="180.0" text="User" />
+          <TableColumn fx:id="dateCol" prefWidth="208.0" text="Date and Time" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

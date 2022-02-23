@@ -1,7 +1,0 @@
-JDBC temp = new JDBC();
-        temp.makeConnection();
-        temp.makePreparedStatement("SELECT *\n" +
-                "FROM customers",temp.getConnection());
-        ResultSet results = temp.getPreparedStatement().executeQuery();
-        while (results.next()){String name = results.getString("Customer_Name"); System.out.println(name);}
-        temp.closeConnection();

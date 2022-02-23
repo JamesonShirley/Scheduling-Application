@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -86,6 +87,7 @@ public class CustController {
     @FXML
     void onDeleteBtnClicked(ActionEvent event) throws SQLException {
         Query query = new Query();
+        String customerName = custTable.getSelectionModel().getSelectedItem().getName();
         query.deleteApptCustomer(custTable.getSelectionModel().getSelectedItem().getId());
         query.deleteCust(custTable.getSelectionModel().getSelectedItem().getId());
         CustList.deleteAllCust();
@@ -101,6 +103,10 @@ public class CustController {
         if(CustList.getAllCust().size() > 0){
             custTable.getSelectionModel().select(0);
         }
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Customer Deleted");
+        alert.setContentText(customerName + " has been successfully deleted.");
+        alert.showAndWait();
     }
 
     @FXML
@@ -119,8 +125,11 @@ public class CustController {
     }
 
     @FXML
-    void onReportBtnClicked(ActionEvent event) {
-
+    void onReportBtnClicked(ActionEvent event) throws IOException {
+        stage = (Stage)((Button)event.getSource()).getScene().getWindow();
+        scene = FXMLLoader.load(Main.class.getResource("apptOverview.fxml"));
+        stage.setScene(new Scene(scene));
+        stage.show();
     }
 
 }

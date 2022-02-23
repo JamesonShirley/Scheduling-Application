@@ -41,10 +41,6 @@
       <Button layoutX="586.0" layoutY="324.0" mnemonicParsing="false" onAction="#onModifyBtnClicked" text="Modify" />
       <Button layoutX="655.0" layoutY="377.0" mnemonicParsing="false" onAction="#onCustomerBtnClicked" text="Customers" />
       <Button layoutX="574.0" layoutY="377.0" mnemonicParsing="false" onAction="#onReportBtnClicked" text="Reports" />
-      <RadioButton layoutX="344.0" layoutY="75.0" mnemonicParsing="false" onAction="#allSelect" selected="true" text="All">
-         <toggleGroup>
-            <ToggleGroup fx:id="apptFilter1" />
-         </toggleGroup>
-      </RadioButton>
+      <RadioButton fx:id="all" layoutX="344.0" layoutY="75.0" mnemonicParsing="false" onAction="#allSelect" selected="true" text="All" toggleGroup="$apptFilter" />
    </children>
 </AnchorPane>
