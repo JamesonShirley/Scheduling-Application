@@ -12,6 +12,7 @@ import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 
 public class Query {
@@ -41,6 +42,11 @@ public class Query {
         }
         temp.closeConnection();
     }
+
+    /***
+     * lambda expression is used here. A lambda is used in order to convert my Zoned Date Time objects into Time and Date strings to be displayed in my appointment table.
+     * @throws SQLException
+     */
     public static void allAppt() throws SQLException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy - HH:mm");
         JDBC temp = new JDBC();
@@ -50,14 +56,23 @@ public class Query {
         ResultSet results = temp.getPreparedStatement().executeQuery();
         while (results.next()){
             ZonedDateTime start = ZonedDateTime.ofInstant(results.getTimestamp("Start").toInstant(), ZoneId.of(ZoneId.systemDefault().getId()));
-            String startString = start.format(formatter);
             ZonedDateTime end = ZonedDateTime.ofInstant(results.getTimestamp("End").toInstant(), ZoneId.of(ZoneId.systemDefault().getId()));
-            String endString = end.format(formatter);
+            ArrayList<ZonedDateTime> timeStrings = new ArrayList<ZonedDateTime>();
+            timeStrings.add(start);
+            timeStrings.add(end);
+            ArrayList<String> myTimes = new ArrayList<String>();
+            timeStrings.forEach((t) -> myTimes.add(t.format(formatter)));
             ApptList.addAppt(new Appointment(results.getInt("Appointment_ID"),
-                    results.getString("Title"), results.getString("Description"), results.getString("Location"), results.getString("Contact_Name"), results.getString("Type"), startString, endString, results.getInt("Customer_ID"), results.getInt("User_ID")));
+                    results.getString("Title"), results.getString("Description"), results.getString("Location"), results.getString("Contact_Name"), results.getString("Type"),
+                    myTimes.get(0), myTimes.get(1), results.getInt("Customer_ID"), results.getInt("User_ID")));
         }
         temp.closeConnection();
     }
+
+    /***
+     * lambda expression used here. A lambda is used here on a ArrayList of ZonedDateTime objects to convert them to Strings in order to save them in an Appointment class to be displayed in the future.
+     * @throws SQLException
+     */
     public static void monthAppt() throws SQLException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy - HH:mm");
         JDBC temp = new JDBC();
@@ -67,11 +82,14 @@ public class Query {
         ResultSet results = temp.getPreparedStatement().executeQuery();
         while (results.next()){
             ZonedDateTime start = ZonedDateTime.ofInstant(results.getTimestamp("Start").toInstant(), ZoneId.of(ZoneId.systemDefault().getId()));
-            String startString = start.format(formatter);
             ZonedDateTime end = ZonedDateTime.ofInstant(results.getTimestamp("End").toInstant(), ZoneId.of(ZoneId.systemDefault().getId()));
-            String endString = end.format(formatter);
+            ArrayList<ZonedDateTime> timeStrings = new ArrayList<ZonedDateTime>();
+            timeStrings.add(start);
+            timeStrings.add(end);
+            ArrayList<String> myTimes = new ArrayList<String>();
+            timeStrings.forEach((t) -> myTimes.add(t.format(formatter)));
             ApptList.addAppt(new Appointment(results.getInt("Appointment_ID"),
-                    results.getString("Title"), results.getString("Description"), results.getString("Location"), results.getString("Contact_Name"), results.getString("Type"), startString, endString, results.getInt("Customer_ID"), results.getInt("User_ID")));
+                    results.getString("Title"), results.getString("Description"), results.getString("Location"), results.getString("Contact_Name"), results.getString("Type"), myTimes.get(0), myTimes.get(1), results.getInt("Customer_ID"), results.getInt("User_ID")));
         }
         temp.closeConnection();
     }
