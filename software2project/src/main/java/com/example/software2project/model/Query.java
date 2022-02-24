@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.time.Month;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
@@ -287,7 +288,17 @@ public class Query {
         temp.closeConnection();
     }
 
-
+    public static void overview() throws SQLException {
+        JDBC temp = new JDBC();
+        temp.makeConnection();
+        temp.makePreparedStatement("SELECT Month(Start) AS month, Type, COUNT(Appointment_ID) AS Num\n" +
+                "FROM appointments\n" + "GROUP BY Type\n" + "ORDER BY month",temp.getConnection());
+        ResultSet results = temp.getPreparedStatement().executeQuery();
+        while (results.next()) {
+            OverviewList.addOverview(new Overview(Month.of(results.getInt("month")).name(), results.getString("Type"), results.getInt("num")));
+        }
+        temp.closeConnection();
+    }
 
 }
 

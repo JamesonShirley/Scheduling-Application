@@ -62,7 +62,7 @@ public class LoginReportController {
     @FXML
     void scheduleSel(ActionEvent event) throws IOException {
         stage = (Stage)((RadioButton)event.getSource()).getScene().getWindow();
-        scene = FXMLLoader.load(Main.class.getResource("schedule.fxml"));
+        scene = FXMLLoader.load(Main.class.getResource("scheduleRep.fxml"));
         stage.setScene(new Scene(scene));
         stage.show();
     }

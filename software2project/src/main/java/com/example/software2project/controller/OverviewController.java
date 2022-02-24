@@ -1,17 +1,31 @@
 package com.example.software2project.controller;
 
 import com.example.software2project.Main;
+import com.example.software2project.model.Overview;
+import com.example.software2project.model.OverviewList;
+import com.example.software2project.model.Query;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class OverviewController {
+    public void initialize() throws SQLException {
+        Query query = new Query();
+        OverviewList.deleteAllOverviews();
+        query.overview();
+        overviewTable.setItems(OverviewList.getAllOverviews());
+        countCol.setCellValueFactory(new PropertyValueFactory<>("count"));
+        monthCol.setCellValueFactory(new PropertyValueFactory<>("month"));
+        typeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
+    }
     Stage stage;
     Parent scene;
 
@@ -22,7 +36,7 @@ public class OverviewController {
     private TableColumn<?, ?> monthCol;
 
     @FXML
-    private TableView<?> overviewTable;
+    private TableView<Overview> overviewTable;
 
     @FXML
     private ToggleGroup report;
@@ -65,7 +79,7 @@ public class OverviewController {
     @FXML
     void scheduleSel(ActionEvent event) throws IOException {
         stage = (Stage)((RadioButton)event.getSource()).getScene().getWindow();
-        scene = FXMLLoader.load(Main.class.getResource("schedule.fxml"));
+        scene = FXMLLoader.load(Main.class.getResource("scheduleRep.fxml"));
         stage.setScene(new Scene(scene));
         stage.show();
     }

@@ -14,7 +14,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.time.ZoneId;
 import java.util.Locale;
@@ -60,6 +63,10 @@ public class LoginController {
 
     @FXML
     void loginBtnClicked(ActionEvent event) throws IOException, SQLException {
+        File p = new File("LoginController.java");
+        String path = p.getAbsolutePath();
+        String permPath = path.substring(0, path.length() - 37);
+        System.out.println(permPath);
         Query query = new Query();
         if (query.login(userID.getText(), password.getText())) {
             stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
