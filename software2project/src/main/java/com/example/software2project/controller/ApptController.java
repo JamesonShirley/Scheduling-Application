@@ -24,6 +24,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class ApptController {
+    /**
+     * initializes the page values and sets the table values
+     * @throws SQLException
+     */
     public void initialize() throws SQLException {
         ApptList.deleteAllAppt();
         Query query = new Query();
@@ -47,48 +51,81 @@ public class ApptController {
     Stage stage;
     Parent scene;
 
+    /**
+     * appointment filter toggle group
+     */
     @FXML
     private ToggleGroup apptFilter;
 
+    /**
+     * radiobutton to get all appointments
+     */
     @FXML
     private RadioButton all;
 
-
+    /**
+     * table to hold all appointments
+     */
     @FXML
     private TableView<Appointment> apptTable;
-
+    /**
+     * Column in table to hold contact name
+     */
     @FXML
     private TableColumn<Appointment, String> conCol;
-
+    /**
+     * column to hold customer id
+     */
     @FXML
     private TableColumn<Appointment, Integer> custCol;
-
+    /**
+     * column to hold description of appointment
+     */
     @FXML
     private TableColumn<Appointment, String> descCol;
-
+    /**
+     * column to hold end date and time
+     */
     @FXML
     private TableColumn<Appointment, LocalDateTime> endCol;
 
-
+    /**
+     * column to hold appointmnet id
+     */
     @FXML
     private TableColumn<Appointment, Integer> idCol;
-
+    /**
+     * column to hold location for appointment
+     */
     @FXML
     private TableColumn<Appointment, String> locCol;
-
+    /**
+     * column to hold start date and time
+     */
     @FXML
     private TableColumn<Appointment, LocalDateTime> startCol;
 
-
+    /**
+     * column to hold title of appointment
+     */
     @FXML
     private TableColumn<Appointment, String> titleCol;
-
+    /**
+     * column to hold type of appointment
+     */
     @FXML
     private TableColumn<Appointment, String> typeCol;
-
+    /**
+     * column to hold user id
+     */
     @FXML
     private TableColumn<Appointment, Integer> userCol;
 
+    /**
+     * selects appointments for current month
+     * @param event
+     * @throws SQLException
+     */
     @FXML
     void monthlySelect(ActionEvent event) throws SQLException {
         ApptList.deleteAllAppt();
@@ -110,6 +147,11 @@ public class ApptController {
         }
     }
 
+    /**
+     * Navigates to page to add an appointment
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void onAddBtnClicked(ActionEvent event) throws IOException {
         stage = (Stage)((Button)event.getSource()).getScene().getWindow();
@@ -118,6 +160,11 @@ public class ApptController {
         stage.show();
     }
 
+    /**
+     * navigates to customer page
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void onCustomerBtnClicked(ActionEvent event) throws IOException {
         stage = (Stage)((Button)event.getSource()).getScene().getWindow();
@@ -127,6 +174,11 @@ public class ApptController {
 
     }
 
+    /**
+     * deletes an appointment
+     * @param event
+     * @throws SQLException
+     */
     @FXML
     void onDeleteBtnClicked(ActionEvent event) throws SQLException {
         int id = apptTable.getSelectionModel().getSelectedItem().getId();
@@ -156,6 +208,12 @@ public class ApptController {
         alert.showAndWait();
     }
 
+    /**
+     * navigates to page to modify an appointment
+     * @param event
+     * @throws IOException
+     * @throws SQLException
+     */
     @FXML
     void onModifyBtnClicked(ActionEvent event) throws IOException, SQLException {
         stage = (Stage)((Button)event.getSource()).getScene().getWindow();

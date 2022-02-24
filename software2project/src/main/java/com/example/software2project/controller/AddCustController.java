@@ -19,34 +19,57 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 public class AddCustController {
+    /**
+     * initializes the page
+     * @throws SQLException
+     */
     public void initialize() throws SQLException {
         Query query = new Query();
         country.setItems((ObservableList<String>) query.getCountries());
     }
     Stage stage;
     Parent scene;
-
+    /**
+     * textfield for address
+     */
     @FXML
     private TextField address;
-
+    /**
+     * combobox for country
+     */
     @FXML
     private ComboBox<String> country;
-
+    /**
+     * combobox for state or province
+     */
     @FXML
     private ComboBox<String> firstLvlDiv;
-
+    /**
+     * textfield for id
+     */
     @FXML
     private TextField id;
-
+    /**
+     * textfield for name
+     */
     @FXML
     private TextField name;
-
+    /**
+     * textfield for phone number
+     */
     @FXML
     private TextField phone;
-
+    /**
+     * textfield for postal code
+     */
     @FXML
     private TextField postal;
 
+    /**
+     * cancels the add customer dialogue
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void onCancelBtnClick(ActionEvent event) throws IOException {
         stage = (Stage)((Button)event.getSource()).getScene().getWindow();
@@ -56,6 +79,11 @@ public class AddCustController {
 
     }
 
+    /**
+     * saves the customer if values are valid or gives error if not.
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void onSaveBtnClick(ActionEvent event) throws IOException {
         try {
@@ -83,6 +111,11 @@ public class AddCustController {
 
     }
 
+    /**
+     * changes states and provinces if country is changed
+     * @param event
+     * @throws SQLException
+     */
     @FXML
     void countryChange(ActionEvent event) throws SQLException {
         Query query = new Query();

@@ -26,46 +26,77 @@ import java.util.Date;
 import java.util.Locale;
 
 public class AddApptController {
+    /***
+     * Function that initializes the page and sets contact drop down items
+     * @throws SQLException
+     */
     public void initialize() throws SQLException {
         Query query = new Query();
         contact.setItems(query.getContacts());
     }
     Stage stage;
     Parent scene;
-
+    /***
+     * combobox for contacts
+     */
     @FXML
     private ComboBox<String> contact;
-
+    /***
+     * text field for Customer ID
+     */
     @FXML
     private TextField custID;
-
+    /***
+     * text area for description
+     */
     @FXML
     private TextArea description;
-
+    /***
+     * textfield for end date
+     */
     @FXML
     private TextField endDate;
-
+    /***
+     * textfield for end time
+     */
     @FXML
     private TextField endTime;
-
+    /***
+     * textfield for location
+     */
     @FXML
     private TextField loc;
-
+    /***
+     * textfield for start date
+     */
     @FXML
     private TextField startDate;
-
+    /***
+     * text field for start time
+     */
     @FXML
     private TextField startTime;
-
+    /***
+     * textfield for title
+     */
     @FXML
     private TextField title;
-
+    /***
+     * textfield for type
+     */
     @FXML
     private TextField type;
-
+    /***
+     * textfield for user ID
+     */
     @FXML
     private TextField userID;
 
+    /***
+     * button that cancels adding appointment
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void onCancelBtnClick(ActionEvent event) throws IOException {
         stage = (Stage)((Button)event.getSource()).getScene().getWindow();
@@ -74,6 +105,13 @@ public class AddApptController {
         stage.show();
     }
 
+    /***
+     * checks if a given time falls in between two other times
+     * @param startTime
+     * @param endTime
+     * @param checkTime
+     * @return
+     */
     private static boolean checkTime(String startTime, String endTime, String checkTime) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm", Locale.US);
         LocalTime startLocalTime = LocalTime.parse(startTime, formatter);
@@ -92,6 +130,13 @@ public class AddApptController {
         return isInBetween;
     }
 
+    /**
+     * Checks if a time will overlap another appointment
+     * @param start2
+     * @param end2
+     * @return
+     * @throws SQLException
+     */
     public static boolean noOverlap(ZonedDateTime start2, ZonedDateTime end2) throws SQLException {
         JDBC temp = new JDBC();
         temp.makeConnection();
@@ -110,6 +155,11 @@ public class AddApptController {
         return false;
     }
 
+    /**
+     * saves if values are legitimate and displays messages
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void onSaveBtnClick(ActionEvent event) throws IOException {
         try {
