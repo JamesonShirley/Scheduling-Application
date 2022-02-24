@@ -14,12 +14,18 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.sql.SQLException;
 import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Locale;
 
 public class LoginController {
@@ -66,15 +72,22 @@ public class LoginController {
         File p = new File("LoginController.java");
         String path = p.getAbsolutePath();
         String permPath = path.substring(0, path.length() - 37);
-        System.out.println(permPath);
+        permPath = permPath.concat("login_activity.txt");
+        File f = new File(permPath);
         Query query = new Query();
         if (query.login(userID.getText(), password.getText())) {
+            BufferedWriter bw = new BufferedWriter((new FileWriter(f, true)));
+            bw.append(userID.getText() + "|Success|"+ ZonedDateTime.now()+"\n");
+            bw.close();
             stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
             scene = FXMLLoader.load(Main.class.getResource("appointments.fxml"));
             stage.setScene(new Scene(scene));
             stage.show();
         }
         else{
+            BufferedWriter bw = new BufferedWriter((new FileWriter(f, true)));
+            bw.append(userID.getText() + "|Fail|"+ ZonedDateTime.now()+"\n");
+            bw.close();
             Locale locale = Locale.getDefault();
             if(locale.getLanguage() == "fr"){
                 Alert alert = new Alert(Alert.AlertType.ERROR);
