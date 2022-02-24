@@ -77,7 +77,7 @@ public class LoginController {
         Query query = new Query();
         if (query.login(userID.getText(), password.getText())) {
             BufferedWriter bw = new BufferedWriter((new FileWriter(f, true)));
-            bw.append(userID.getText() + "|Success|"+ ZonedDateTime.now()+"\n");
+            bw.append(userID.getText() + " Success "+ ZonedDateTime.now()+"\n");
             bw.close();
             stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
             scene = FXMLLoader.load(Main.class.getResource("appointments.fxml"));

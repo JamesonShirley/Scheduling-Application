@@ -1,2 +1,2 @@
-test|Fail|2022-02-23T16:46:58.258795200-08:00[America/Los_Angeles]
-test|Success|2022-02-23T16:47:00.418462400-08:00[America/Los_Angeles]
+test Success 2022-02-23T18:03:55.352614700-08:00[America/Los_Angeles]
+test Success 2022-02-23T18:07:02.417954300-08:00[America/Los_Angeles]

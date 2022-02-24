@@ -1,17 +1,44 @@
 package com.example.software2project.controller;
 
 import com.example.software2project.Main;
+import com.example.software2project.model.Status;
+import com.example.software2project.model.StatusList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
-import java.io.IOException;
+import java.io.*;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class LoginReportController {
+    public void initialize() throws IOException {
+        StatusList.deleteAllStatuses();
+        File p = new File("LoginReportController.java");
+        String path = p.getAbsolutePath();
+        String permPath = path.substring(0, path.length() - 43);
+        permPath = permPath.concat("login_activity.txt");
+        File f = new File(permPath);
+        BufferedReader br = new BufferedReader(new FileReader(f));
+        String st;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy - HH:mm");
+        while((st = br.readLine()) != null){
+            String[] myStr = st.split(" ", 3);
+            String time = ZonedDateTime.parse(myStr[2]).format(formatter);
+            StatusList.addStatus(new Status(myStr[0], time, myStr[1]));
+        }
+        loginTable.setItems(StatusList.getAllStatuses());
+        dateCol.setCellValueFactory(new PropertyValueFactory<>("time"));
+        status.setCellValueFactory(new PropertyValueFactory<>("status"));
+        userCol.setCellValueFactory(new PropertyValueFactory<>("user"));
+
+    }
     Stage stage;
     Parent scene;
 
@@ -19,7 +46,10 @@ public class LoginReportController {
     private TableColumn<?, ?> dateCol;
 
     @FXML
-    private TableView<?> loginTable;
+    private TableColumn<?, ?> status;
+
+    @FXML
+    private TableView<Status> loginTable;
 
     @FXML
     private ToggleGroup report;

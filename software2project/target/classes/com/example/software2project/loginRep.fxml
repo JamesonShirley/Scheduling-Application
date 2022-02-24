@@ -27,8 +27,9 @@
       <RadioButton layoutX="41.0" layoutY="78.0" mnemonicParsing="false" onAction="#loginSel" selected="true" text="Login Attempts" toggleGroup="$report" />
       <TableView fx:id="loginTable" layoutX="235.0" layoutY="95.0" prefHeight="200.0" prefWidth="389.0">
         <columns>
-          <TableColumn fx:id="userCol" prefWidth="180.0" text="User" />
-          <TableColumn fx:id="dateCol" prefWidth="208.0" text="Date and Time" />
+          <TableColumn fx:id="userCol" prefWidth="102.0" text="User" />
+          <TableColumn fx:id="dateCol" prefWidth="189.0" text="Date and Time" />
+            <TableColumn fx:id="status" prefWidth="97.0" text="Status" />
         </columns>
       </TableView>
    </children>
