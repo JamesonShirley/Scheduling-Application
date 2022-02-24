@@ -1,7 +1,9 @@
 package com.example.software2project.controller;
 
+import com.example.software2project.JDBC;
 import com.example.software2project.Main;
 import com.example.software2project.model.Appointment;
+import com.example.software2project.model.ApptList;
 import com.example.software2project.model.Customer;
 import com.example.software2project.model.Query;
 import javafx.collections.ObservableList;
@@ -14,11 +16,13 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.Locale;
 
 public class AddApptController {
@@ -88,6 +92,25 @@ public class AddApptController {
         return isInBetween;
     }
 
+    public static boolean noOverlap(ZonedDateTime start2, ZonedDateTime end2) throws SQLException {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy - HH:mm");
+        JDBC temp = new JDBC();
+        temp.makeConnection();
+        temp.makePreparedStatement("SELECT a.Appointment_ID, a.Title, a.Description, a.Location, c.Contact_Name, a.Type, a.Start, a.End, a.Customer_ID, a.User_ID\n" +
+                "FROM appointments a\n" + "INNER JOIN contacts c ON c.Contact_ID = a.Contact_ID",temp.getConnection());
+        ResultSet results = temp.getPreparedStatement().executeQuery();
+        while (results.next()){
+            ZonedDateTime start = ZonedDateTime.ofInstant(results.getTimestamp("Start").toInstant(), ZoneId.of("US/Eastern"));
+            ZonedDateTime end = ZonedDateTime.ofInstant(results.getTimestamp("End").toInstant(), ZoneId.of("US/Eastern"));
+            if (Date.from(start.toInstant()).before(Date.from(end2.toInstant())) && Date.from(start2.toInstant()).before(Date.from(end.toInstant()))){
+                temp.closeConnection();
+                return true;
+            }
+            }
+        temp.closeConnection();
+        return false;
+    }
+
     @FXML
     void onSaveBtnClick(ActionEvent event) throws IOException {
         try {
@@ -105,12 +128,20 @@ public class AddApptController {
             String startTimeEastern = startEastern.format(timeFormat);
             String endTimeEastern = endEastern.format(timeFormat);
             if (checkTime("08:00", "22:00", startTimeEastern) && checkTime("08:00", "22:00", endTimeEastern)) {
-                Appointment appt = new Appointment(1, title.getText(), description.getText(), loc.getText(), "temp", type.getText(), "startDateTime", "endDateTime", Integer.parseInt(custID.getText()), Integer.parseInt(userID.getText()));
-                query.addAppt(appt.getTitle(), appt.getDescription(), appt.getLoc(), contactId, appt.getType(), startDateTime, endDateTime, appt.getCustId(), appt.getUserId());
-                stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-                scene = FXMLLoader.load(Main.class.getResource("appointments.fxml"));
-                stage.setScene(new Scene(scene));
-                stage.show();
+                if (!noOverlap(startEastern, endEastern)) {
+                    Appointment appt = new Appointment(1, title.getText(), description.getText(), loc.getText(), "temp", type.getText(), "startDateTime", "endDateTime", Integer.parseInt(custID.getText()), Integer.parseInt(userID.getText()));
+                    query.addAppt(appt.getTitle(), appt.getDescription(), appt.getLoc(), contactId, appt.getType(), startDateTime, endDateTime, appt.getCustId(), appt.getUserId());
+                    stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+                    scene = FXMLLoader.load(Main.class.getResource("appointments.fxml"));
+                    stage.setScene(new Scene(scene));
+                    stage.show();
+                }
+                else{
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Overlapping appointments");
+                    alert.setContentText("Please enter times that do not overlap with another appointment.");
+                    alert.showAndWait();
+                }
             }
             else{
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -132,4 +163,4 @@ public class AddApptController {
         }
     }
 
-}
+    }
