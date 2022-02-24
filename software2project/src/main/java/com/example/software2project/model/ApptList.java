@@ -2,7 +2,13 @@ package com.example.software2project.model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+/**
+ * Class Appointment List
+ */
 
+/**
+ * @author Jameson Shirley
+ */
 public class ApptList {
     private static ObservableList<Appointment> apptlist = FXCollections.observableArrayList();
     public static ObservableList<Appointment> getAllAppt(){return apptlist;}

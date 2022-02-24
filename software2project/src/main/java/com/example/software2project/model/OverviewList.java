@@ -2,7 +2,13 @@ package com.example.software2project.model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+/**
+ * Class Overview List
+ */
 
+/**
+ * @author Jameson Shirley
+ */
 public class OverviewList {
     private static ObservableList<Overview> overviews = FXCollections.observableArrayList();
     public static ObservableList<Overview> getAllOverviews(){return overviews;}

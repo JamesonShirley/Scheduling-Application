@@ -25,6 +25,13 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Locale;
 
+/**
+ * Class Add Appointment Controller
+ */
+
+/**
+ * @author Jameson Shirley
+ */
 public class AddApptController {
     /***
      * Function that initializes the page and sets contact drop down items

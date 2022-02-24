@@ -14,7 +14,13 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+/**
+ * Class Query
+ */
 
+/**
+ * @author Jameson Shirley
+ */
 public class Query {
     public static Boolean login(String user, String pass) throws SQLException {
         JDBC temp = new JDBC();

@@ -18,8 +18,18 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.SQLException;
+/**
+ * Class Customer Controller
+ */
 
+/**
+ * @author Jameson Shirley
+ */
 public class CustController {
+    /**
+     * initializes the page and sets table values
+     * @throws SQLException
+     */
     public void initialize() throws SQLException {
         CustList.deleteAllCust();
         Query query = new Query();
@@ -39,31 +49,52 @@ public class CustController {
     }
     Stage stage;
     Parent scene;
-
+    /**
+     * column for customer address
+     */
     @FXML
     private TableColumn<Customer, String> addCol;
-
+    /**
+     * column to hold postal code
+     */
     @FXML
     private TableColumn<Customer, String> codeCol;
-
+    /**
+     * column to hold country
+     */
     @FXML
     private TableColumn<Customer, String> countryCol;
-
+    /**
+     * table to hold customers
+     */
     @FXML
     private TableView<Customer> custTable;
-
+    /**
+     * column to hold customer name
+     */
     @FXML
     private TableColumn<Customer, String> nameCol;
-
+    /**
+     * column to hold phone number
+     */
     @FXML
     private TableColumn<Customer, String> phoneCol;
-
+    /**
+     * column to hold state or province
+     */
     @FXML
     private TableColumn<Customer, String> stateCol;
-
+    /**
+     * column to hold customer id
+     */
     @FXML
     private TableColumn<Customer, Integer> idCol;
 
+    /**
+     * navigates to page to add customer
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void onAddBtnClicked(ActionEvent event) throws IOException {
         stage = (Stage)((Button)event.getSource()).getScene().getWindow();
@@ -74,6 +105,11 @@ public class CustController {
 
     }
 
+    /**
+     * navigates to appointment page
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void onApptBtnClicked(ActionEvent event) throws IOException {
         stage = (Stage)((Button)event.getSource()).getScene().getWindow();
@@ -84,6 +120,11 @@ public class CustController {
 
     }
 
+    /**
+     * deletes a customer
+     * @param event
+     * @throws SQLException
+     */
     @FXML
     void onDeleteBtnClicked(ActionEvent event) throws SQLException {
         Query query = new Query();
@@ -109,6 +150,12 @@ public class CustController {
         alert.showAndWait();
     }
 
+    /**
+     * navigates to customer modification page
+     * @param event
+     * @throws IOException
+     * @throws SQLException
+     */
     @FXML
     void onModifyBtnClicked(ActionEvent event) throws IOException, SQLException {
         stage = (Stage)((Button)event.getSource()).getScene().getWindow();
@@ -124,6 +171,11 @@ public class CustController {
 
     }
 
+    /**
+     * novigates to report page
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void onReportBtnClicked(ActionEvent event) throws IOException {
         stage = (Stage)((Button)event.getSource()).getScene().getWindow();

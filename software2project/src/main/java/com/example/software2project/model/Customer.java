@@ -1,5 +1,11 @@
 package com.example.software2project.model;
+/**
+ * Class Customer
+ */
 
+/**
+ * @author Jameson Shirley
+ */
 public class Customer {
     private int id;
     private String name;

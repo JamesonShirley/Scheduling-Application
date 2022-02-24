@@ -17,7 +17,13 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.SQLException;
+/**
+ * Class Add Customer Controller
+ */
 
+/**
+ * @author Jameson Shirley
+ */
 public class AddCustController {
     /**
      * initializes the page

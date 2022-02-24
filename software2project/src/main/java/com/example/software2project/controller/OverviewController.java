@@ -15,8 +15,18 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.SQLException;
+/**
+ * Class Overview Report Controller
+ */
 
+/**
+ * @author Jameson Shirley
+ */
 public class OverviewController {
+    /**
+     * initializes the page and populates the overview table
+     * @throws SQLException
+     */
     public void initialize() throws SQLException {
         Query query = new Query();
         OverviewList.deleteAllOverviews();
@@ -28,22 +38,37 @@ public class OverviewController {
     }
     Stage stage;
     Parent scene;
-
+    /**
+     * column for count of appointments
+     */
     @FXML
     private TableColumn<?, ?> countCol;
-
+    /**
+     * column for month
+     */
     @FXML
     private TableColumn<?, ?> monthCol;
-
+    /**
+     * table to store report info
+     */
     @FXML
     private TableView<Overview> overviewTable;
-
+    /**
+     * report radio buttons
+     */
     @FXML
     private ToggleGroup report;
-
+    /**
+     * column to store appointment type
+     */
     @FXML
     private TableColumn<?, ?> typeCol;
 
+    /**
+     * navigates to the appointment overview report
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void apptOverviewSel(ActionEvent event) throws IOException {
         stage = (Stage)((RadioButton)event.getSource()).getScene().getWindow();
@@ -52,6 +77,11 @@ public class OverviewController {
         stage.show();
     }
 
+    /**
+     * navigates to the login report
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void loginSel(ActionEvent event) throws IOException {
         stage = (Stage)((RadioButton)event.getSource()).getScene().getWindow();
@@ -60,6 +90,11 @@ public class OverviewController {
         stage.show();
     }
 
+    /**
+     * navigates to the customer page
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void onCustomerBtnClicked(ActionEvent event) throws IOException {
         stage = (Stage)((Button)event.getSource()).getScene().getWindow();
@@ -68,6 +103,11 @@ public class OverviewController {
         stage.show();
     }
 
+    /**
+     * navigates to the appointment page
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void onApptBtnClicked(ActionEvent event) throws IOException {
         stage = (Stage)((Button)event.getSource()).getScene().getWindow();
@@ -76,6 +116,11 @@ public class OverviewController {
         stage.show();
     }
 
+    /**
+     * navigates to the schedule report
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void scheduleSel(ActionEvent event) throws IOException {
         stage = (Stage)((RadioButton)event.getSource()).getScene().getWindow();

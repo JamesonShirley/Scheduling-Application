@@ -31,8 +31,17 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Locale;
+/**
+ * Class Login Controller
+ */
 
+/**
+ * @author Jameson Shirley
+ */
 public class LoginController {
+    /**
+     * initializes the page and converts page to french if language is french
+     */
     public void initialize(){
         localeDateTime.setText(String.valueOf(ZoneId.of(ZoneId.systemDefault().getId())));
         Locale locale = Locale.getDefault();
@@ -46,31 +55,53 @@ public class LoginController {
     }
     Stage stage;
     Parent scene;
-
+    /**
+     * local time zone label
+     */
     @FXML
     private Label localTimeZone;
-
+    /**
+     * locale date time text field
+     */
     @FXML
     private TextField localeDateTime;
-
+    /**
+     * login button to validate credentials
+     */
     @FXML
     private Button login;
-
+    /**
+     * password textfield
+     */
     @FXML
     private TextField password;
-
+    /**
+     * password text
+     */
     @FXML
     private Label passwordText;
-
+    /**
+     * username text field
+     */
     @FXML
     private TextField userID;
-
+    /**
+     * username text label
+     */
     @FXML
     private Label usernameText;
-
+    /**
+     * welcome text label
+     */
     @FXML
     private Text welcome;
 
+    /**
+     * validates a users credentials, logs their login attempt, displays an error message if invalid credentials, navigates if valid to appointment page
+     * @param event
+     * @throws IOException
+     * @throws SQLException
+     */
     @FXML
     void loginBtnClicked(ActionEvent event) throws IOException, SQLException {
         File p = new File("LoginController.java");

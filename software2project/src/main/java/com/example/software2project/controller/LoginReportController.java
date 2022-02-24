@@ -16,8 +16,18 @@ import java.io.*;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+/**
+ * Class Login Report Controller
+ */
 
+/**
+ * @author Jameson Shirley
+ */
 public class LoginReportController {
+    /**
+     * initializes the page and sets table values
+     * @throws IOException
+     */
     public void initialize() throws IOException {
         StatusList.deleteAllStatuses();
         File p = new File("LoginReportController.java");
@@ -41,22 +51,37 @@ public class LoginReportController {
     }
     Stage stage;
     Parent scene;
-
+    /**
+     * column to hold date and time
+     */
     @FXML
     private TableColumn<?, ?> dateCol;
-
+    /**
+     * column to hold status
+     */
     @FXML
     private TableColumn<?, ?> status;
-
+    /**
+     * table to hold login attempts
+     */
     @FXML
     private TableView<Status> loginTable;
-
+    /**
+     * radio buttons to choose report page
+     */
     @FXML
     private ToggleGroup report;
-
+    /**
+     * column to hold username
+     */
     @FXML
     private TableColumn<?, ?> userCol;
 
+    /**
+     * navigates to the login report
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void loginSel(ActionEvent event) throws IOException {
         stage = (Stage)((RadioButton)event.getSource()).getScene().getWindow();
@@ -65,6 +90,11 @@ public class LoginReportController {
         stage.show();
     }
 
+    /**
+     * navigates to the customer page
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void onCustomerBtnClicked(ActionEvent event) throws IOException {
         stage = (Stage)((Button)event.getSource()).getScene().getWindow();
@@ -73,6 +103,11 @@ public class LoginReportController {
         stage.show();
     }
 
+    /**
+     * navigates to the appointment page
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void onApptBtnClicked(ActionEvent event) throws IOException {
         stage = (Stage)((Button)event.getSource()).getScene().getWindow();
@@ -81,6 +116,11 @@ public class LoginReportController {
         stage.show();
     }
 
+    /**
+     * navigates to the overview report
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void overviewSel(ActionEvent event) throws IOException {
         stage = (Stage)((RadioButton)event.getSource()).getScene().getWindow();
@@ -89,6 +129,11 @@ public class LoginReportController {
         stage.show();
     }
 
+    /**
+     * navigates to the schedule report
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void scheduleSel(ActionEvent event) throws IOException {
         stage = (Stage)((RadioButton)event.getSource()).getScene().getWindow();

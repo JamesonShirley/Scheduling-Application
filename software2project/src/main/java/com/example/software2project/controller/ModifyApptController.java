@@ -23,47 +23,82 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Locale;
+/**
+ * Class Modify Appointment Controller
+ */
 
+/**
+ * @author Jameson Shirley
+ */
 public class ModifyApptController {
     Stage stage;
     Parent scene;
-
+    /**
+     * combobox for contact name
+     */
     @FXML
     private ComboBox<String> contact;
-
+    /**
+     * textfield for customer ID
+     */
     @FXML
     private TextField custID;
-
+    /**
+     * textarea for description
+     */
     @FXML
     private TextArea description;
-
+    /**
+     * textfield for end date
+     */
     @FXML
     private TextField endDate;
-
+    /**
+     * textfield for end time
+     */
     @FXML
     private TextField endTime;
-
+    /**
+     * textfield for id
+     */
     @FXML
     private TextField id;
-
+    /**
+     * textfield for location
+     */
     @FXML
     private TextField loc;
-
+    /**
+     * textfield for start date
+     */
     @FXML
     private TextField startDate;
-
+    /**
+     * textfield for start time
+     */
     @FXML
     private TextField startTime;
-
+    /**
+     * text field for title
+     */
     @FXML
     private TextField title;
-
+    /**
+     * textfield for type
+     */
     @FXML
     private TextField type;
-
+    /**
+     * textfield for user ID
+     */
     @FXML
     private TextField userID;
 
+    /**
+     * cancels the modify appointment dialogue
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void onCancelBtnClick(ActionEvent event) throws IOException {
         stage = (Stage)((Button)event.getSource()).getScene().getWindow();
@@ -73,6 +108,14 @@ public class ModifyApptController {
 
 
     }
+
+    /**
+     * checks if the time is in business hours
+     * @param startTime
+     * @param endTime
+     * @param checkTime
+     * @return
+     */
     private static boolean checkTime(String startTime, String endTime, String checkTime) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm", Locale.US);
         LocalTime startLocalTime = LocalTime.parse(startTime, formatter);
@@ -90,6 +133,15 @@ public class ModifyApptController {
 
         return isInBetween;
     }
+
+    /**
+     * makes sure there is no overlap between appointments
+     * @param start2
+     * @param end2
+     * @param id
+     * @return
+     * @throws SQLException
+     */
     public static boolean noOverlap(ZonedDateTime start2, ZonedDateTime end2, int id) throws SQLException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy - HH:mm");
         JDBC temp = new JDBC();
@@ -170,6 +222,12 @@ public class ModifyApptController {
 
 
     }
+
+    /**
+     * send an appointment to the page
+     * @param appt
+     * @throws SQLException
+     */
     public void sendAppt(Appointment appt) throws SQLException {
         String[] arrEnd = appt.getEnd().split(" ", 3);
         String[] arrStart = appt.getStart().split(" ", 3);

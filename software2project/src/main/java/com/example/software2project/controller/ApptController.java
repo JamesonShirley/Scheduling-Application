@@ -22,7 +22,13 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+/**
+ * Class Appointment Controller
+ */
 
+/**
+ * @author Jameson Shirley
+ */
 public class ApptController {
     /**
      * initializes the page values and sets the table values
@@ -229,6 +235,11 @@ public class ApptController {
 
     }
 
+    /**
+     * navigates to report page
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void onReportBtnClicked(ActionEvent event) throws IOException {
         stage = (Stage)((Button)event.getSource()).getScene().getWindow();
@@ -237,6 +248,11 @@ public class ApptController {
         stage.show();
     }
 
+    /**
+     * filters appointments to given week
+     * @param event
+     * @throws SQLException
+     */
     @FXML
     void weeklySelect(ActionEvent event) throws SQLException {
         ApptList.deleteAllAppt();
@@ -258,6 +274,11 @@ public class ApptController {
         }
     }
 
+    /**
+     * filters appointments to all appointments
+     * @param event
+     * @throws SQLException
+     */
     @FXML
     void allSelect(ActionEvent event) throws SQLException {
         ApptList.deleteAllAppt();

@@ -1,5 +1,11 @@
 package com.example.software2project.model;
+/**
+ * Class Overview
+ */
 
+/**
+ * @author Jameson Shirley
+ */
 public class Overview {
     private static String month;
     private static String type;

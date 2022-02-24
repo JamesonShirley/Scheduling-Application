@@ -17,32 +17,57 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.SQLException;
+/**
+ * Class Modify Customer Controller
+ */
 
+/**
+ * @author Jameson Shirley
+ */
 public class ModifyCustController {
     Stage stage;
     Parent scene;
-
+    /**
+     * textfield for address
+     */
     @FXML
     private TextField address;
-
+    /**
+     * combobox for country
+     */
     @FXML
     private ComboBox<String> country;
-
+    /**
+     * combobox for state or province
+     */
     @FXML
     private ComboBox<String> firstLvlDiv;
-
+    /**
+     * textfield for id
+     */
     @FXML
     private TextField id;
-
+    /**
+     * textfield for customer name
+     */
     @FXML
     private TextField name;
-
+    /**
+     * textfield for phone number
+     */
     @FXML
     private TextField phone;
-
+    /**
+     * textfield for postal code
+     */
     @FXML
     private TextField postal;
 
+    /**
+     * cancels the modify customer dialogue
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void onCancelBtnClick(ActionEvent event) throws IOException {
         stage = (Stage)((Button)event.getSource()).getScene().getWindow();
@@ -53,6 +78,11 @@ public class ModifyCustController {
 
     }
 
+    /**
+     * saves the customer if all fields are valid
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void onSaveBtnClick(ActionEvent event) throws IOException {
         try {
@@ -80,12 +110,22 @@ public class ModifyCustController {
 
     }
 
+    /**
+     * changes the division combobox based on country
+     * @param event
+     * @throws SQLException
+     */
     @FXML
     void countryChange(ActionEvent event) throws SQLException {
         Query query = new Query();
         firstLvlDiv.setItems(query.getDivisions(country.getSelectionModel().getSelectedItem()));
     }
 
+    /**
+     * sends a customer to the new page
+     * @param cust
+     * @throws SQLException
+     */
     public void sendCust(Customer cust) throws SQLException {
         Query query = new Query();
         country.setItems((ObservableList<String>) query.getCountries());

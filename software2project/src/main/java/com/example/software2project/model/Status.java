@@ -1,7 +1,13 @@
 package com.example.software2project.model;
 
 import java.time.ZonedDateTime;
+/**
+ * Class Status
+ */
 
+/**
+ * @author Jameson Shirley
+ */
 public class Status {
     private static String user;
     private static String time;
