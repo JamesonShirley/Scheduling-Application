@@ -93,7 +93,6 @@ public class AddApptController {
     }
 
     public static boolean noOverlap(ZonedDateTime start2, ZonedDateTime end2) throws SQLException {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy - HH:mm");
         JDBC temp = new JDBC();
         temp.makeConnection();
         temp.makePreparedStatement("SELECT a.Appointment_ID, a.Title, a.Description, a.Location, c.Contact_Name, a.Type, a.Start, a.End, a.Customer_ID, a.User_ID\n" +

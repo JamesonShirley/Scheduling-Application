@@ -1,5 +1,6 @@
 package com.example.software2project.controller;
 
+import com.example.software2project.JDBC;
 import com.example.software2project.Main;
 import com.example.software2project.model.Query;
 import javafx.event.ActionEvent;
@@ -23,9 +24,12 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.Locale;
 
 public class LoginController {
@@ -79,6 +83,37 @@ public class LoginController {
             BufferedWriter bw = new BufferedWriter((new FileWriter(f, true)));
             bw.append(userID.getText() + " Success "+ ZonedDateTime.now()+"\n");
             bw.close();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+            DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy/MM/dd - HH:mm");
+            ZonedDateTime curr = ZonedDateTime.now(ZoneId.systemDefault());
+            ZonedDateTime curr2 = curr.plusMinutes(15).plusSeconds(1);
+            boolean noAppt = true;
+            String today = curr.format(formatter);
+            JDBC temp = new JDBC();
+            temp.makeConnection();
+            temp.makePreparedStatement("SELECT a.Appointment_ID, a.Title, a.Description, a.Location, a.Type, a.Start, a.End, a.Customer_ID, a.User_ID\n" +
+                    "FROM appointments a INNER JOIN users u ON u.User_ID = a.User_ID\n" + "WHERE DATE(a.Start) = ? AND u.User_Name = ?",temp.getConnection());
+            temp.getPreparedStatement().setString(1, today);
+            temp.getPreparedStatement().setString(2, userID.getText());
+            ResultSet results = temp.getPreparedStatement().executeQuery();
+            while (results.next()){
+                ZonedDateTime start = ZonedDateTime.ofInstant(results.getTimestamp("Start").toInstant(), ZoneId.of(ZoneId.systemDefault().getId()));
+                if (Date.from(curr.toInstant()).before(Date.from(start.toInstant())) &&  Date.from(curr2.toInstant()).after(Date.from(start.toInstant()))) {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("APPOINTMENT");
+                    alert.setContentText("You have an appointment at with ID of " + results.getInt("Appointment_ID") + " at " + start.format(formatter2));
+                    alert.showAndWait();
+                    noAppt = false;
+                    break;
+                }
+            }
+            if(noAppt) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("APPOINTMENT");
+                alert.setContentText("You have no appointments");
+                alert.showAndWait();
+            }
+            temp.closeConnection();
             stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
             scene = FXMLLoader.load(Main.class.getResource("appointments.fxml"));
             stage.setScene(new Scene(scene));

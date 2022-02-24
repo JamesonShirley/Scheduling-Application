@@ -111,6 +111,12 @@ public class ModifyApptController {
         return false;
     }
 
+    /**
+     *
+     * @param event
+     * @throws IOException
+     * Saves the modified appointment
+     */
     @FXML
     void onSaveBtnClick(ActionEvent event) throws IOException {
         try {

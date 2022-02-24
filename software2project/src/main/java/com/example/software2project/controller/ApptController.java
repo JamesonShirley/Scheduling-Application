@@ -1,4 +1,5 @@
 package com.example.software2project.controller;
+import com.example.software2project.JDBC;
 import com.example.software2project.Main;
 import com.example.software2project.model.Appointment;
 import com.example.software2project.model.ApptList;
@@ -14,8 +15,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 public class ApptController {
     public void initialize() throws SQLException {
