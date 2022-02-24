@@ -65,8 +65,8 @@ public class ModifyCustController {
 
     /**
      * cancels the modify customer dialogue
-     * @param event
-     * @throws IOException
+     * @param event event
+     * @throws IOException if the page fails to load
      */
     @FXML
     void onCancelBtnClick(ActionEvent event) throws IOException {
@@ -80,8 +80,8 @@ public class ModifyCustController {
 
     /**
      * saves the customer if all fields are valid
-     * @param event
-     * @throws IOException
+     * @param event event
+     * @throws IOException if the page fails to load
      */
     @FXML
     void onSaveBtnClick(ActionEvent event) throws IOException {
@@ -112,8 +112,8 @@ public class ModifyCustController {
 
     /**
      * changes the division combobox based on country
-     * @param event
-     * @throws SQLException
+     * @param event event
+     * @throws SQLException if there is a sql error
      */
     @FXML
     void countryChange(ActionEvent event) throws SQLException {
@@ -123,8 +123,8 @@ public class ModifyCustController {
 
     /**
      * sends a customer to the new page
-     * @param cust
-     * @throws SQLException
+     * @param cust customer
+     * @throws SQLException if there is a sql error
      */
     public void sendCust(Customer cust) throws SQLException {
         Query query = new Query();

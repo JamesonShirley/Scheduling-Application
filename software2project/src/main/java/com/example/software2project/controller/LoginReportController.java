@@ -26,7 +26,7 @@ import java.time.format.DateTimeFormatter;
 public class LoginReportController {
     /**
      * initializes the page and sets table values
-     * @throws IOException
+     * @throws IOException if the file fails to be loaded
      */
     public void initialize() throws IOException {
         StatusList.deleteAllStatuses();
@@ -79,8 +79,8 @@ public class LoginReportController {
 
     /**
      * navigates to the login report
-     * @param event
-     * @throws IOException
+     * @param event event
+     * @throws IOException if the page fails to load
      */
     @FXML
     void loginSel(ActionEvent event) throws IOException {
@@ -92,8 +92,8 @@ public class LoginReportController {
 
     /**
      * navigates to the customer page
-     * @param event
-     * @throws IOException
+     * @param event event
+     * @throws IOException if th epage fails to load
      */
     @FXML
     void onCustomerBtnClicked(ActionEvent event) throws IOException {
@@ -105,8 +105,8 @@ public class LoginReportController {
 
     /**
      * navigates to the appointment page
-     * @param event
-     * @throws IOException
+     * @param event event
+     * @throws IOException if the page fails to load
      */
     @FXML
     void onApptBtnClicked(ActionEvent event) throws IOException {
@@ -118,8 +118,8 @@ public class LoginReportController {
 
     /**
      * navigates to the overview report
-     * @param event
-     * @throws IOException
+     * @param event event
+     * @throws IOException if the page fails to load
      */
     @FXML
     void overviewSel(ActionEvent event) throws IOException {
@@ -131,8 +131,8 @@ public class LoginReportController {
 
     /**
      * navigates to the schedule report
-     * @param event
-     * @throws IOException
+     * @param event event
+     * @throws IOException if the page fails to load
      */
     @FXML
     void scheduleSel(ActionEvent event) throws IOException {

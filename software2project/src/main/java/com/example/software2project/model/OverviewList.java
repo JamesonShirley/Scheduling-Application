@@ -11,8 +11,22 @@ import javafx.collections.ObservableList;
  */
 public class OverviewList {
     private static ObservableList<Overview> overviews = FXCollections.observableArrayList();
+
+    /**
+     * returns all overviews
+     * @return overview list
+     */
     public static ObservableList<Overview> getAllOverviews(){return overviews;}
+
+    /**
+     * adds an overview to the list
+     * @param overview overview
+     */
     public static void addOverview(Overview overview) {overviews.add(overview);}
+
+    /**
+     * clears all overviews from the list
+     */
     public static void deleteAllOverviews(){
         OverviewList.getAllOverviews().clear();
     }

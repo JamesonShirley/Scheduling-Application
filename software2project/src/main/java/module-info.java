@@ -1,3 +1,6 @@
+/**
+ * module information
+ */
 module com.example.software2project {
     requires javafx.controls;
     requires javafx.fxml;

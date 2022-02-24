@@ -25,7 +25,7 @@ import java.sql.SQLException;
 public class ScheduleController {
     /**
      * populates the schedule table and initializes the page
-     * @throws SQLException
+     * @throws SQLException if there is a sql error
      */
     public void initialize() throws SQLException {
         Query query = new Query();
@@ -121,8 +121,8 @@ public class ScheduleController {
 
     /**
      * navigate to the login report
-     * @param event
-     * @throws IOException
+     * @param event event
+     * @throws IOException if the page fails to load
      */
     @FXML
     void loginSel(ActionEvent event) throws IOException {
@@ -134,8 +134,8 @@ public class ScheduleController {
 
     /**
      * navigates to the appointment page
-     * @param event
-     * @throws IOException
+     * @param event event
+     * @throws IOException if the page fails to load
      */
     @FXML
     void onApptBtnClicked(ActionEvent event) throws IOException {
@@ -147,8 +147,8 @@ public class ScheduleController {
 
     /**
      * navigates to the customer page
-     * @param event
-     * @throws IOException
+     * @param event event
+     * @throws IOException if the page fails to load
      */
     @FXML
     void onCustomerBtnClicked(ActionEvent event) throws IOException {
@@ -160,8 +160,8 @@ public class ScheduleController {
 
     /**
      * navigates to the overview report
-     * @param event
-     * @throws IOException
+     * @param event event
+     * @throws IOException if the page fails to load
      */
     @FXML
     void overviewSel(ActionEvent event) throws IOException {
@@ -173,8 +173,8 @@ public class ScheduleController {
 
     /**
      * navigates to the schedule report
-     * @param event
-     * @throws IOException
+     * @param event event
+     * @throws IOException if the page fails to load
      */
     @FXML
     void scheduleSel(ActionEvent event) throws IOException {
@@ -186,8 +186,8 @@ public class ScheduleController {
 
     /**
      * changes user for the schedule
-     * @param event
-     * @throws SQLException
+     * @param event event
+     * @throws SQLException if there is a sql error
      */
     @FXML
     void userChange(ActionEvent event) throws SQLException {

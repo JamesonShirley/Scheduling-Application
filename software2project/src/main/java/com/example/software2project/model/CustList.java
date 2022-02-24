@@ -11,24 +11,22 @@ import javafx.collections.ObservableList;
  */
 public class CustList {
     private static ObservableList<Customer> custlist = FXCollections.observableArrayList();
+
+    /**
+     * returns all customers
+     * @return customer list
+     */
     public static ObservableList<Customer> getAllCust(){return custlist;}
+
+    /**
+     * adds a customer to the list
+     * @param cust customer
+     */
     public static void addCust(Customer cust) {custlist.add(cust);}
-    public static boolean deleteCust(int id){
-        for (Customer cust : CustList.getAllCust()){
-            if (cust.getId() == id){
-                return CustList.getAllCust().remove(cust);
-            }
-        }
-        return false;
-    }
-    public static Customer lookupCust(int id){
-        for (Customer cust : CustList.getAllCust()){
-            if (cust.getId() == id){
-                return cust;
-            }
-        }
-        return null;
-    }
+
+    /**
+     * clears the customer list
+     */
     public static void deleteAllCust(){
         CustList.getAllCust().clear();
     }

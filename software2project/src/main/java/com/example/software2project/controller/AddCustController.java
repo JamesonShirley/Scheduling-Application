@@ -27,7 +27,7 @@ import java.sql.SQLException;
 public class AddCustController {
     /**
      * initializes the page
-     * @throws SQLException
+     * @throws SQLException if there is a sql error
      */
     public void initialize() throws SQLException {
         Query query = new Query();
@@ -73,8 +73,8 @@ public class AddCustController {
 
     /**
      * cancels the add customer dialogue
-     * @param event
-     * @throws IOException
+     * @param event event
+     * @throws IOException if the new page fails to laod
      */
     @FXML
     void onCancelBtnClick(ActionEvent event) throws IOException {
@@ -87,8 +87,8 @@ public class AddCustController {
 
     /**
      * saves the customer if values are valid or gives error if not.
-     * @param event
-     * @throws IOException
+     * @param event event
+     * @throws IOException if the new page fails to load
      */
     @FXML
     void onSaveBtnClick(ActionEvent event) throws IOException {
@@ -119,8 +119,8 @@ public class AddCustController {
 
     /**
      * changes states and provinces if country is changed
-     * @param event
-     * @throws SQLException
+     * @param event event
+     * @throws SQLException if there is a sql error
      */
     @FXML
     void countryChange(ActionEvent event) throws SQLException {

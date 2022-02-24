@@ -28,7 +28,7 @@ import java.sql.SQLException;
 public class CustController {
     /**
      * initializes the page and sets table values
-     * @throws SQLException
+     * @throws SQLException if there is a sql error
      */
     public void initialize() throws SQLException {
         CustList.deleteAllCust();
@@ -92,8 +92,8 @@ public class CustController {
 
     /**
      * navigates to page to add customer
-     * @param event
-     * @throws IOException
+     * @param event event
+     * @throws IOException if the new page fails to load
      */
     @FXML
     void onAddBtnClicked(ActionEvent event) throws IOException {
@@ -107,8 +107,8 @@ public class CustController {
 
     /**
      * navigates to appointment page
-     * @param event
-     * @throws IOException
+     * @param event event
+     * @throws IOException if the new page fails to load
      */
     @FXML
     void onApptBtnClicked(ActionEvent event) throws IOException {
@@ -122,8 +122,8 @@ public class CustController {
 
     /**
      * deletes a customer
-     * @param event
-     * @throws SQLException
+     * @param event event
+     * @throws SQLException if there is a sql error
      */
     @FXML
     void onDeleteBtnClicked(ActionEvent event) throws SQLException {
@@ -152,9 +152,9 @@ public class CustController {
 
     /**
      * navigates to customer modification page
-     * @param event
-     * @throws IOException
-     * @throws SQLException
+     * @param event event
+     * @throws IOException if the new page fails to load
+     * @throws SQLException if there is a sql error
      */
     @FXML
     void onModifyBtnClicked(ActionEvent event) throws IOException, SQLException {
@@ -173,8 +173,8 @@ public class CustController {
 
     /**
      * novigates to report page
-     * @param event
-     * @throws IOException
+     * @param event event
+     * @throws IOException if the new page fails to load
      */
     @FXML
     void onReportBtnClicked(ActionEvent event) throws IOException {

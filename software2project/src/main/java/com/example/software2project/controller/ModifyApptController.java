@@ -96,8 +96,8 @@ public class ModifyApptController {
 
     /**
      * cancels the modify appointment dialogue
-     * @param event
-     * @throws IOException
+     * @param event event
+     * @throws IOException if the page fails to load
      */
     @FXML
     void onCancelBtnClick(ActionEvent event) throws IOException {
@@ -111,10 +111,10 @@ public class ModifyApptController {
 
     /**
      * checks if the time is in business hours
-     * @param startTime
-     * @param endTime
-     * @param checkTime
-     * @return
+     * @param startTime starting time
+     * @param endTime end time
+     * @param checkTime time to check
+     * @return boolean
      */
     private static boolean checkTime(String startTime, String endTime, String checkTime) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm", Locale.US);
@@ -136,11 +136,11 @@ public class ModifyApptController {
 
     /**
      * makes sure there is no overlap between appointments
-     * @param start2
-     * @param end2
-     * @param id
-     * @return
-     * @throws SQLException
+     * @param start2 start time
+     * @param end2 end time
+     * @param id appointment id
+     * @return boolean
+     * @throws SQLException if there is a sql error
      */
     public static boolean noOverlap(ZonedDateTime start2, ZonedDateTime end2, int id) throws SQLException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy - HH:mm");
@@ -165,8 +165,8 @@ public class ModifyApptController {
 
     /**
      *
-     * @param event
-     * @throws IOException
+     * @param event event
+     * @throws IOException if the page fails to load
      * Saves the modified appointment
      */
     @FXML
@@ -225,8 +225,8 @@ public class ModifyApptController {
 
     /**
      * send an appointment to the page
-     * @param appt
-     * @throws SQLException
+     * @param appt appointment
+     * @throws SQLException if there is a sql error
      */
     public void sendAppt(Appointment appt) throws SQLException {
         String[] arrEnd = appt.getEnd().split(" ", 3);

@@ -22,6 +22,13 @@ import java.util.ArrayList;
  * @author Jameson Shirley
  */
 public class Query {
+    /**
+     * returns true if username and password are valid
+     * @param user username
+     * @param pass password
+     * @return boolean
+     * @throws SQLException if there is a sql error
+     */
     public static Boolean login(String user, String pass) throws SQLException {
         JDBC temp = new JDBC();
         temp.makeConnection();
@@ -35,6 +42,11 @@ public class Query {
         temp.closeConnection();
         return count == 1;
     }
+
+    /**
+     * Creates all customers and populates them into the customer list
+     * @throws SQLException if there is a sql error
+     */
     public static void customers() throws SQLException {
         JDBC temp = new JDBC();
         temp.makeConnection();
@@ -51,7 +63,8 @@ public class Query {
 
     /***
      * lambda expression is used here. A lambda is used in order to convert my Zoned Date Time objects into Time and Date strings to be displayed in my appointment table.
-     * @throws SQLException
+     * populates the list of appointments without filters
+     * @throws SQLException if there is a sql error
      */
     public static void allAppt() throws SQLException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy - HH:mm");
@@ -77,7 +90,8 @@ public class Query {
 
     /***
      * lambda expression used here. A lambda is used here on a ArrayList of ZonedDateTime objects to convert them to Strings in order to save them in an Appointment class to be displayed in the future.
-     * @throws SQLException
+     * populates the list of appintments and filters by current month
+     * @throws SQLException if there is a sql error
      */
     public static void monthAppt() throws SQLException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy - HH:mm");
@@ -99,6 +113,11 @@ public class Query {
         }
         temp.closeConnection();
     }
+
+    /**
+     * populates the list of appointments and filters by current week
+     * @throws SQLException if there is a sql error
+     */
     public static void weekAppt() throws SQLException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy - HH:mm");
         JDBC temp = new JDBC();
@@ -117,6 +136,11 @@ public class Query {
         temp.closeConnection();
     }
 
+    /**
+     * populates the appointment list with all appointments for a given user
+     * @param userID User ID
+     * @throws SQLException if there is a sql error
+     */
     public static void userAppt(int userID) throws SQLException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy - HH:mm");
         JDBC temp = new JDBC();
@@ -136,7 +160,15 @@ public class Query {
         temp.closeConnection();
     }
 
-
+    /**
+     * adds a customer to the database
+     * @param name name
+     * @param address address
+     * @param code code
+     * @param phone phone number
+     * @param divId division id
+     * @throws SQLException if there is a sql error
+     */
     public static void addCust(String name, String address, String code, String phone, int divId) throws SQLException {
         JDBC temp = new JDBC();
         temp.makeConnection();
@@ -150,6 +182,17 @@ public class Query {
         temp.getPreparedStatement().executeUpdate();
         temp.closeConnection();
     }
+
+    /**
+     * updates a customer in the database
+     * @param id id
+     * @param name name
+     * @param address address
+     * @param code code
+     * @param phone phone number
+     * @param divId division id
+     * @throws SQLException if there is a sql error
+     */
     public static void updateCust(int id, String name, String address, String code, String phone, int divId) throws SQLException {
         JDBC temp = new JDBC();
         temp.makeConnection();
@@ -165,6 +208,12 @@ public class Query {
         temp.getPreparedStatement().executeUpdate();
         temp.closeConnection();
     }
+
+    /**
+     * returns a list of all the countries in the database
+     * @return list of countries
+     * @throws SQLException if there is a sql error
+     */
     public static ObservableList<String> getCountries() throws SQLException {
         JDBC temp = new JDBC();
         temp.makeConnection();
@@ -179,6 +228,12 @@ public class Query {
         return arr;
     }
 
+    /**
+     * returns a list of all the divisions in the database for a given country
+     * @param country country
+     * @return division list
+     * @throws SQLException if there is a sql error
+     */
     public static ObservableList<String> getDivisions(String country) throws SQLException {
         JDBC temp = new JDBC();
         temp.makeConnection();
@@ -194,6 +249,13 @@ public class Query {
         temp.closeConnection();
         return arr;
     }
+
+    /**
+     * returns a divisions id
+     * @param div division
+     * @return division ID
+     * @throws SQLException if there is a sql error
+     */
     public static int getDivId(String div) throws SQLException {
         JDBC temp = new JDBC();
         temp.makeConnection();
@@ -208,6 +270,13 @@ public class Query {
         temp.closeConnection();
         return value;
     }
+
+    /**
+     * returns a country id
+     * @param country country
+     * @return country id
+     * @throws SQLException if there is a sql error
+     */
     public static int getCountryId(String country) throws SQLException {
         JDBC temp = new JDBC();
         temp.makeConnection();
@@ -222,6 +291,12 @@ public class Query {
         temp.closeConnection();
         return value;
     }
+
+    /**
+     * deletes a customer from the database
+     * @param id id
+     * @throws SQLException if there is a sql error
+     */
     public static void deleteCust(int id) throws SQLException {
         JDBC temp = new JDBC();
         temp.makeConnection();
@@ -231,6 +306,12 @@ public class Query {
         temp.getPreparedStatement().executeUpdate();
         temp.closeConnection();
     }
+
+    /**
+     * returns a list of all contacts
+     * @return list of contact names
+     * @throws SQLException if there is a sql error
+     */
     public static ObservableList<String> getContacts() throws SQLException {
         JDBC temp = new JDBC();
         temp.makeConnection();
@@ -244,6 +325,13 @@ public class Query {
         temp.closeConnection();
         return contacts;
     }
+
+    /**
+     * returns a contacts id
+     * @param contact contact
+     * @return contact id
+     * @throws SQLException if there is a sql error
+     */
     public static int getContactId(String contact) throws SQLException {
         JDBC temp = new JDBC();
         temp.makeConnection();
@@ -258,6 +346,20 @@ public class Query {
         temp.closeConnection();
         return contactId;
     }
+
+    /**
+     * add an appointment to the database
+     * @param title title
+     * @param description description
+     * @param loc location
+     * @param contact contact
+     * @param type type
+     * @param start start date and time
+     * @param end end date and time
+     * @param custId customer id
+     * @param userId user id
+     * @throws SQLException if there is a sql error
+     */
     public static void addAppt(String title, String description, String loc, int contact, String type, ZonedDateTime start, ZonedDateTime end, int custId, int userId) throws SQLException {
         JDBC temp = new JDBC();
         temp.makeConnection();
@@ -275,6 +377,21 @@ public class Query {
         temp.getPreparedStatement().executeUpdate();
         temp.closeConnection();
     }
+
+    /**
+     * updates an appointment in the database
+     * @param id id
+     * @param title title
+     * @param description description
+     * @param loc location
+     * @param contact contact
+     * @param type type
+     * @param start start date and time
+     * @param end end date and time
+     * @param custId customer id
+     * @param userId user id
+     * @throws SQLException if there is a sql error
+     */
     public static void updateAppt(int id, String title, String description, String loc, int contact, String type, ZonedDateTime start, ZonedDateTime end, int custId, int userId) throws SQLException {
         JDBC temp = new JDBC();
         temp.makeConnection();
@@ -293,6 +410,12 @@ public class Query {
         temp.getPreparedStatement().executeUpdate();
         temp.closeConnection();
     }
+
+    /**
+     * deletes an appointment in the database
+     * @param id appointment id
+     * @throws SQLException if there is a sql error
+     */
     public static void deleteApptId(int id) throws SQLException {
         JDBC temp = new JDBC();
         temp.makeConnection();
@@ -302,6 +425,12 @@ public class Query {
         temp.getPreparedStatement().executeUpdate();
         temp.closeConnection();
     }
+
+    /**
+     * deletes all the appointments associated with a customer
+     * @param id customer id
+     * @throws SQLException if there is a sql error
+     */
     public static void deleteApptCustomer(int id) throws SQLException {
         JDBC temp = new JDBC();
         temp.makeConnection();
@@ -312,6 +441,10 @@ public class Query {
         temp.closeConnection();
     }
 
+    /**
+     * builds the overview list
+     * @throws SQLException if there is a sql error
+     */
     public static void overview() throws SQLException {
         JDBC temp = new JDBC();
         temp.makeConnection();

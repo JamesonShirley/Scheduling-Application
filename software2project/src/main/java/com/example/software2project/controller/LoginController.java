@@ -98,9 +98,9 @@ public class LoginController {
 
     /**
      * validates a users credentials, logs their login attempt, displays an error message if invalid credentials, navigates if valid to appointment page
-     * @param event
-     * @throws IOException
-     * @throws SQLException
+     * @param event event
+     * @throws IOException if the new page fails to load
+     * @throws SQLException if there is a sql error
      */
     @FXML
     void loginBtnClicked(ActionEvent event) throws IOException, SQLException {

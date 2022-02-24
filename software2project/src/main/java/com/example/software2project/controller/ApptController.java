@@ -32,7 +32,7 @@ import java.util.Date;
 public class ApptController {
     /**
      * initializes the page values and sets the table values
-     * @throws SQLException
+     * @throws SQLException if there is a sql error
      */
     public void initialize() throws SQLException {
         ApptList.deleteAllAppt();
@@ -129,8 +129,8 @@ public class ApptController {
 
     /**
      * selects appointments for current month
-     * @param event
-     * @throws SQLException
+     * @param event event
+     * @throws SQLException if there is a sql error
      */
     @FXML
     void monthlySelect(ActionEvent event) throws SQLException {
@@ -155,8 +155,8 @@ public class ApptController {
 
     /**
      * Navigates to page to add an appointment
-     * @param event
-     * @throws IOException
+     * @param event event
+     * @throws IOException if the new page fails to load
      */
     @FXML
     void onAddBtnClicked(ActionEvent event) throws IOException {
@@ -168,8 +168,8 @@ public class ApptController {
 
     /**
      * navigates to customer page
-     * @param event
-     * @throws IOException
+     * @param event event
+     * @throws IOException if the new page fails to load
      */
     @FXML
     void onCustomerBtnClicked(ActionEvent event) throws IOException {
@@ -182,8 +182,8 @@ public class ApptController {
 
     /**
      * deletes an appointment
-     * @param event
-     * @throws SQLException
+     * @param event event
+     * @throws SQLException if there is a sql error
      */
     @FXML
     void onDeleteBtnClicked(ActionEvent event) throws SQLException {
@@ -216,9 +216,9 @@ public class ApptController {
 
     /**
      * navigates to page to modify an appointment
-     * @param event
-     * @throws IOException
-     * @throws SQLException
+     * @param event event
+     * @throws IOException if the new page fails to load
+     * @throws SQLException if there is a sql error
      */
     @FXML
     void onModifyBtnClicked(ActionEvent event) throws IOException, SQLException {
@@ -228,7 +228,6 @@ public class ApptController {
         Scene scene = new Scene(loader.load());
         ModifyApptController MAC = loader.getController();
         MAC.sendAppt(apptTable.getSelectionModel().getSelectedItem());
-        System.out.println(apptTable.getSelectionModel().getSelectedItem().getId());
         stage.setTitle("");
         stage.setScene(scene);
         stage.show();
@@ -237,8 +236,8 @@ public class ApptController {
 
     /**
      * navigates to report page
-     * @param event
-     * @throws IOException
+     * @param event event
+     * @throws IOException if the new page fails to load
      */
     @FXML
     void onReportBtnClicked(ActionEvent event) throws IOException {
@@ -250,8 +249,8 @@ public class ApptController {
 
     /**
      * filters appointments to given week
-     * @param event
-     * @throws SQLException
+     * @param event event
+     * @throws SQLException if there is a sql error
      */
     @FXML
     void weeklySelect(ActionEvent event) throws SQLException {
@@ -276,8 +275,8 @@ public class ApptController {
 
     /**
      * filters appointments to all appointments
-     * @param event
-     * @throws SQLException
+     * @param event event
+     * @throws SQLException if there is a sql error
      */
     @FXML
     void allSelect(ActionEvent event) throws SQLException {

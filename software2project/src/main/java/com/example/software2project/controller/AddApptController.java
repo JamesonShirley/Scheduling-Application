@@ -35,7 +35,7 @@ import java.util.Locale;
 public class AddApptController {
     /***
      * Function that initializes the page and sets contact drop down items
-     * @throws SQLException
+     * @throws SQLException if there is a sql error
      */
     public void initialize() throws SQLException {
         Query query = new Query();
@@ -101,8 +101,8 @@ public class AddApptController {
 
     /***
      * button that cancels adding appointment
-     * @param event
-     * @throws IOException
+     * @param event event
+     * @throws IOException if there is an issue loading the new page
      */
     @FXML
     void onCancelBtnClick(ActionEvent event) throws IOException {
@@ -114,10 +114,10 @@ public class AddApptController {
 
     /***
      * checks if a given time falls in between two other times
-     * @param startTime
-     * @param endTime
-     * @param checkTime
-     * @return
+     * @param startTime start time
+     * @param endTime end time
+     * @param checkTime time to check
+     * @return boolean
      */
     private static boolean checkTime(String startTime, String endTime, String checkTime) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm", Locale.US);
@@ -139,10 +139,10 @@ public class AddApptController {
 
     /**
      * Checks if a time will overlap another appointment
-     * @param start2
-     * @param end2
-     * @return
-     * @throws SQLException
+     * @param start2 start time
+     * @param end2 end time
+     * @return  boolean
+     * @throws SQLException if there is a sql error
      */
     public static boolean noOverlap(ZonedDateTime start2, ZonedDateTime end2) throws SQLException {
         JDBC temp = new JDBC();
@@ -164,8 +164,8 @@ public class AddApptController {
 
     /**
      * saves if values are legitimate and displays messages
-     * @param event
-     * @throws IOException
+     * @param event event
+     * @throws IOException if the page doesnt load
      */
     @FXML
     void onSaveBtnClick(ActionEvent event) throws IOException {

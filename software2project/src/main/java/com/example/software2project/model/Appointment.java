@@ -27,16 +27,16 @@ public class Appointment {
 
     /**
      * Constructor to create an appointment
-     * @param id
-     * @param title
-     * @param description
-     * @param loc
-     * @param contact
-     * @param type
-     * @param start
-     * @param end
-     * @param custId
-     * @param userId
+     * @param id appointment id
+     * @param title title
+     * @param description description
+     * @param loc location
+     * @param contact contact
+     * @param type type
+     * @param start start date and time
+     * @param end end date and time
+     * @param custId customer id
+     * @param userId user id
      */
     public Appointment(int id, String title, String description, String loc, String contact, String type, String start, String end, int custId, int userId){
         this.id = id;
@@ -53,7 +53,7 @@ public class Appointment {
 
     /**
      * returns the id
-     * @return
+     * @return id
      */
     public int getId() {
         return id;
@@ -61,7 +61,7 @@ public class Appointment {
 
     /**
      * sets the id
-     * @param id
+     * @param id id
      */
     public void setId(int id) {
         this.id = id;
@@ -69,7 +69,7 @@ public class Appointment {
 
     /**
      * returns the title
-     * @return
+     * @return title
      */
     public String getTitle() {
         return title;
@@ -77,7 +77,7 @@ public class Appointment {
 
     /**
      * sets the title
-     * @param title
+     * @param title title
      */
     public void setTitle(String title) {
         this.title = title;
@@ -85,7 +85,7 @@ public class Appointment {
 
     /**
      * returns the description
-     * @return
+     * @return description
      */
     public String getDescription() {
         return description;
@@ -93,7 +93,7 @@ public class Appointment {
 
     /**
      * sets the description
-     * @param description
+     * @param description description
      */
     public void setDescription(String description) {
         this.description = description;
@@ -101,7 +101,7 @@ public class Appointment {
 
     /**
      * returns the location
-     * @return
+     * @return location
      */
     public String getLoc() {
         return loc;
@@ -109,7 +109,7 @@ public class Appointment {
 
     /**
      * sets the location
-     * @param loc
+     * @param loc location
      */
     public void setLoc(String loc) {
         this.loc = loc;
@@ -117,7 +117,7 @@ public class Appointment {
 
     /**
      * returns the contact
-     * @return
+     * @return contact
      */
     public String getContact() {
         return contact;
@@ -125,7 +125,7 @@ public class Appointment {
 
     /**
      * sets the contact
-     * @param contact
+     * @param contact contact
      */
     public void setContact(String contact) {
         this.contact = contact;
@@ -133,7 +133,7 @@ public class Appointment {
 
     /**
      * returns the type
-     * @return
+     * @return type
      */
     public String getType() {
         return type;
@@ -141,7 +141,7 @@ public class Appointment {
 
     /**
      * sets the type
-     * @param type
+     * @param type type
      */
     public void setType(String type) {
         this.type = type;
@@ -149,7 +149,7 @@ public class Appointment {
 
     /**
      * returns the customer id
-     * @return
+     * @return customer id
      */
     public int getCustId() {
         return custId;
@@ -157,7 +157,7 @@ public class Appointment {
 
     /**
      * sets the customer id
-     * @param custId
+     * @param custId customer id
      */
     public void setCustId(int custId) {
         this.custId = custId;
@@ -165,7 +165,7 @@ public class Appointment {
 
     /**
      * returns the user ID
-     * @return
+     * @return user id
      */
     public int getUserId() {
         return userId;
@@ -173,7 +173,7 @@ public class Appointment {
 
     /**
      * sets the user ID
-     * @param userId
+     * @param userId user id
      */
     public void setUserId(int userId) {
         this.userId = userId;
@@ -181,7 +181,7 @@ public class Appointment {
 
     /**
      * returns the start date and time
-     * @return
+     * @return start date and time
      */
     public String getStart() {
         return start;
@@ -189,7 +189,7 @@ public class Appointment {
 
     /**
      * sets the start date and time
-     * @param start
+     * @param start start date and time
      */
     public void setStart(String start) {
         this.start = start;
@@ -197,7 +197,7 @@ public class Appointment {
 
     /**
      * returns the end date and time
-     * @return
+     * @return end date and time
      */
     public String getEnd() {
         return end;
@@ -205,7 +205,7 @@ public class Appointment {
 
     /**
      * sets the end date and time
-     * @param end
+     * @param end end date and time
      */
     public void setEnd(String end) {
         this.end = end;

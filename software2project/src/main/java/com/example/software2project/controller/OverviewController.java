@@ -25,7 +25,7 @@ import java.sql.SQLException;
 public class OverviewController {
     /**
      * initializes the page and populates the overview table
-     * @throws SQLException
+     * @throws SQLException if there is a sql error
      */
     public void initialize() throws SQLException {
         Query query = new Query();
@@ -66,8 +66,8 @@ public class OverviewController {
 
     /**
      * navigates to the appointment overview report
-     * @param event
-     * @throws IOException
+     * @param event event
+     * @throws IOException if the page fails to load
      */
     @FXML
     void apptOverviewSel(ActionEvent event) throws IOException {
@@ -79,8 +79,8 @@ public class OverviewController {
 
     /**
      * navigates to the login report
-     * @param event
-     * @throws IOException
+     * @param event event
+     * @throws IOException if the page fails to load
      */
     @FXML
     void loginSel(ActionEvent event) throws IOException {
@@ -92,8 +92,8 @@ public class OverviewController {
 
     /**
      * navigates to the customer page
-     * @param event
-     * @throws IOException
+     * @param event event
+     * @throws IOException if the page fails to load
      */
     @FXML
     void onCustomerBtnClicked(ActionEvent event) throws IOException {
@@ -105,8 +105,8 @@ public class OverviewController {
 
     /**
      * navigates to the appointment page
-     * @param event
-     * @throws IOException
+     * @param event event
+     * @throws IOException if the page fails to load
      */
     @FXML
     void onApptBtnClicked(ActionEvent event) throws IOException {
@@ -118,8 +118,8 @@ public class OverviewController {
 
     /**
      * navigates to the schedule report
-     * @param event
-     * @throws IOException
+     * @param event event
+     * @throws IOException if the page fails to load
      */
     @FXML
     void scheduleSel(ActionEvent event) throws IOException {
