@@ -106,7 +106,8 @@ public class LoginController {
     void loginBtnClicked(ActionEvent event) throws IOException, SQLException {
         File p = new File("LoginController.java");
         String path = p.getAbsolutePath();
-        String permPath = path.substring(0, path.length() - 37);
+        System.out.println(path);
+        String permPath = path.substring(0, path.length() - 20);
         permPath = permPath.concat("login_activity.txt");
         File f = new File(permPath);
         Query query = new Query();

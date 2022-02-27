@@ -32,7 +32,8 @@ public class LoginReportController {
         StatusList.deleteAllStatuses();
         File p = new File("LoginReportController.java");
         String path = p.getAbsolutePath();
-        String permPath = path.substring(0, path.length() - 43);
+        System.out.println(path);
+        String permPath = path.substring(0, path.length() - 26);
         permPath = permPath.concat("login_activity.txt");
         File f = new File(permPath);
         BufferedReader br = new BufferedReader(new FileReader(f));
