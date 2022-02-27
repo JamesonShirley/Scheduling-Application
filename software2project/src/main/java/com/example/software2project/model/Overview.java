@@ -7,9 +7,9 @@ package com.example.software2project.model;
  * @author Jameson Shirley
  */
 public class Overview {
-    private static String month;
-    private static String type;
-    private static int count;
+    private  String month;
+    private  String type;
+    private  int count;
 
     /**
      * creates an overview
@@ -27,7 +27,7 @@ public class Overview {
      * returns the month
      * @return month
      */
-    public static String getMonth() {
+    public  String getMonth() {
         return month;
     }
 
@@ -35,15 +35,14 @@ public class Overview {
      * sets the month
      * @param month month
      */
-    public static void setMonth(String month) {
-        Overview.month = month;
+    public void setMonth(String month) {this.month = month;
     }
 
     /**
      * returns the type
      * @return type
      */
-    public static String getType() {
+    public  String getType() {
         return type;
     }
 
@@ -51,15 +50,14 @@ public class Overview {
      * sets the type
      * @param type type
      */
-    public static void setType(String type) {
-        Overview.type = type;
+    public void setType(String type) {this.type = type;
     }
 
     /**
      * returns the count
      * @return count
      */
-    public static int getCount() {
+    public  int getCount() {
         return count;
     }
 
@@ -67,7 +65,7 @@ public class Overview {
      * sets the count
      * @param count count
      */
-    public static void setCount(int count) {
-        Overview.count = count;
+    public  void setCount(int count) {
+        this.count = count;
     }
 }
