@@ -193,6 +193,8 @@ public class ScheduleController {
     void userChange(ActionEvent event) throws SQLException {
         Query query = new Query();
         ApptList.deleteAllAppt();
+
+
         query.userAppt(query.getContactId(user.getSelectionModel().getSelectedItem()));
         apptTable.setItems(ApptList.getAllAppt());
         conCol.setCellValueFactory(new PropertyValueFactory<>("contact"));

@@ -4,6 +4,7 @@ import com.example.software2project.Main;
 import com.example.software2project.model.Overview;
 import com.example.software2project.model.OverviewList;
 import com.example.software2project.model.Query;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -31,6 +32,8 @@ public class OverviewController {
         Query query = new Query();
         OverviewList.deleteAllOverviews();
         query.overview();
+//        ObservableList<Overview> test = OverviewList.getAllOverviews();
+//        test.forEach(overview -> System.out.println(overview.getMonth() + " " + overview.getType() + " " + overview.getCount()));
         overviewTable.setItems(OverviewList.getAllOverviews());
         countCol.setCellValueFactory(new PropertyValueFactory<>("count"));
         monthCol.setCellValueFactory(new PropertyValueFactory<>("month"));

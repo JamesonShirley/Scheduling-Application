@@ -24,6 +24,7 @@ public class OverviewList {
      */
     public static void addOverview(Overview overview) {overviews.add(overview);}
 
+
     /**
      * clears all overviews from the list
      */

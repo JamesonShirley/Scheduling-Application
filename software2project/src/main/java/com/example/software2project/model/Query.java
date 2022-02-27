@@ -146,7 +146,7 @@ public class Query {
         JDBC temp = new JDBC();
         temp.makeConnection();
         temp.makePreparedStatement("SELECT a.Appointment_ID, a.Title, a.Description, a.Location, c.Contact_Name, a.Type, a.Start, a.End, a.Customer_ID, a.User_ID\n" +
-                "FROM appointments a\n" + "INNER JOIN contacts c ON c.Contact_ID = a.Contact_ID\n" + "WHERE a.User_ID = ?",temp.getConnection());
+                "FROM appointments a\n" + "INNER JOIN contacts c ON c.Contact_ID = a.Contact_ID\n" + "WHERE a.contact_ID = ?",temp.getConnection());
         temp.getPreparedStatement().setInt(1, userID);
         ResultSet results = temp.getPreparedStatement().executeQuery();
         while (results.next()){
@@ -449,13 +449,20 @@ public class Query {
         JDBC temp = new JDBC();
         temp.makeConnection();
         temp.makePreparedStatement("SELECT Month(Start) AS month, Type, COUNT(Appointment_ID) AS Num\n" +
-                "FROM appointments\n" + "GROUP BY Type\n" + "ORDER BY month",temp.getConnection());
+                "FROM appointments\n" + "GROUP BY month, Type\n" + "ORDER BY month",temp.getConnection());
         ResultSet results = temp.getPreparedStatement().executeQuery();
         while (results.next()) {
-            OverviewList.addOverview(new Overview(Month.of(results.getInt("month")).name(), results.getString("Type"), results.getInt("num")));
+            Overview tempOver = new Overview(Month.of(results.getInt("month")).name(), results.getString("Type"), results.getInt("Num"));
+            System.out.println(tempOver.getMonth() + " " + tempOver.getType() + " " + tempOver.getCount());
+            OverviewList.addOverview(tempOver);
+            ObservableList<Overview> tempOvers1  = OverviewList.getAllOverviews();
+            tempOvers1.forEach(overview -> System.out.println(overview.getMonth() + " " + overview.getType() + " " + overview.getCount()));
         }
+        ObservableList<Overview> tempOvers = OverviewList.getAllOverviews();
+        tempOvers.forEach(overview -> System.out.println(overview.getMonth() + " " + overview.getType() + " " + overview.getCount()));
         temp.closeConnection();
     }
 
 }
+
 
