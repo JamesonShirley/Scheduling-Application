@@ -48,13 +48,17 @@ public class LoginReportController {
         dateCol.setCellValueFactory(new PropertyValueFactory<>("time"));
         status.setCellValueFactory(new PropertyValueFactory<>("status"));
         userCol.setCellValueFactory(new PropertyValueFactory<>("user"));
-
+        ZonedDateTime now = ZonedDateTime.now();
+        dateTimeCreated.setText(now.format(formatter));
     }
     Stage stage;
     Parent scene;
     /**
      * column to hold date and time
      */
+    @FXML
+    private TextField dateTimeCreated;
+
     @FXML
     private TableColumn<?, ?> dateCol;
     /**

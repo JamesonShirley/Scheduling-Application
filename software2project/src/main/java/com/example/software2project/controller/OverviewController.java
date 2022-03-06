@@ -16,6 +16,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 /**
  * Class Overview Report Controller
  */
@@ -38,9 +40,15 @@ public class OverviewController {
         countCol.setCellValueFactory(new PropertyValueFactory<>("count"));
         monthCol.setCellValueFactory(new PropertyValueFactory<>("month"));
         typeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy - HH:mm");
+        ZonedDateTime now = ZonedDateTime.now();
+        dateTimeCreated.setText(now.format(formatter));
     }
     Stage stage;
     Parent scene;
+
+    @FXML
+    private TextField dateTimeCreated;
     /**
      * column for count of appointments
      */

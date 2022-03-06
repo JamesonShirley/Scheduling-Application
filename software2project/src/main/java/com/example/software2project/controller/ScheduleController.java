@@ -15,6 +15,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 /**
  * Class Schedule Report Controller
  */
@@ -45,9 +47,15 @@ public class ScheduleController {
         if(ApptList.getAllAppt().size() > 0){
             apptTable.getSelectionModel().select(0);
         }
+        ZonedDateTime now = ZonedDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy - HH:mm");
+        dateTimeCreated.setText(now.format(formatter));
     }
     Stage stage;
     Parent scene;
+
+    @FXML
+    private TextField dateTimeCreated;
     /**
      * radiobutton for appointment report
      */
