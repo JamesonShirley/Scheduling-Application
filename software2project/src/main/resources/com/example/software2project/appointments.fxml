@@ -4,6 +4,7 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
@@ -42,5 +43,7 @@
       <Button layoutX="655.0" layoutY="377.0" mnemonicParsing="false" onAction="#onCustomerBtnClicked" text="Customers" />
       <Button layoutX="574.0" layoutY="377.0" mnemonicParsing="false" onAction="#onReportBtnClicked" text="Reports" />
       <RadioButton fx:id="all" layoutX="344.0" layoutY="75.0" mnemonicParsing="false" onAction="#allSelect" selected="true" text="All" toggleGroup="$apptFilter" />
+      <TextField fx:id="searchTxt" layoutX="566.0" layoutY="46.0" promptText="Search by Appt Title" />
+      <Button layoutX="738.0" layoutY="46.0" mnemonicParsing="false" onAction="#onSearchBtnClicked" text="Search" />
    </children>
 </AnchorPane>

@@ -4,6 +4,7 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
@@ -32,5 +33,7 @@
             <TableColumn fx:id="status" prefWidth="97.0" text="Status" />
         </columns>
       </TableView>
+      <Text layoutX="565.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Created:" />
+      <TextField fx:id="dateTimeCreated" disable="true" layoutX="622.0" layoutY="27.0" />
    </children>
 </AnchorPane>

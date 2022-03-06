@@ -57,6 +57,9 @@ public class ApptController {
     Stage stage;
     Parent scene;
 
+    @FXML
+    private TextField searchTxt;
+
     /**
      * appointment filter toggle group
      */
@@ -283,6 +286,27 @@ public class ApptController {
         ApptList.deleteAllAppt();
         Query query = new Query();
         query.allAppt();
+        apptTable.setItems(ApptList.getAllAppt());
+        conCol.setCellValueFactory(new PropertyValueFactory<>("contact"));
+        custCol.setCellValueFactory(new PropertyValueFactory<>("custId"));
+        descCol.setCellValueFactory(new PropertyValueFactory<>("description"));
+        endCol.setCellValueFactory(new PropertyValueFactory<>("end"));
+        locCol.setCellValueFactory(new PropertyValueFactory<>("loc"));
+        startCol.setCellValueFactory(new PropertyValueFactory<>("start"));
+        idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
+        typeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
+        userCol.setCellValueFactory(new PropertyValueFactory<>("userId"));
+        if(ApptList.getAllAppt().size() > 0){
+            apptTable.getSelectionModel().select(0);
+        }
+    }
+
+    @FXML
+    void onSearchBtnClicked(ActionEvent event) throws SQLException {
+        ApptList.deleteAllAppt();
+        Query query = new Query();
+        query.searchAppt(searchTxt.getText());
         apptTable.setItems(ApptList.getAllAppt());
         conCol.setCellValueFactory(new PropertyValueFactory<>("contact"));
         custCol.setCellValueFactory(new PropertyValueFactory<>("custId"));
